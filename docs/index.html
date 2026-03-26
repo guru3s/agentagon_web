@@ -749,10 +749,10 @@
             btn.textContent = 'Submitting...';
 
             const data = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                role: document.getElementById('role').value,
-                usecase: document.getElementById('usecase').value
+                Name: document.getElementById('name').value,
+                Email: document.getElementById('email').value,
+                'What are you building': document.getElementById('role').value,
+                'Use case': document.getElementById('usecase').value
             };
 
             fetch('https://formcarry.com/s/Xz9dYSKKcM1', {
