@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentagon Demo</title>
+    <meta name="description" content="See how Agentagon turns any API into a paid, agent-accessible endpoint in 5 lines of code.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='none' stroke='white' stroke-width='2.5' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #ffffff;
+            --bg-warm: #fafaf8;
+            --bg-card: #f5f5f0;
+            --bg-card-hover: #eeeeea;
+            --bg-dark: #111111;
+            --border: #e5e5e0;
+            --border-hover: #d0d0cb;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --green: #22c55e;
+            --green-bg: #f0fdf4;
+            --green-border: #bbf7d0;
+            --blue: #3b82f6;
+            --blue-bg: #eff6ff;
+            --purple: #8b5cf6;
+            --purple-bg: #f5f3ff;
+            --red: #ef4444;
+            --red-bg: #fef2f2;
+            --orange: #f97316;
+            --orange-bg: #fff7ed;
+        }
+
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-warm);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        ::selection { background: var(--bg-dark); color: white; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── TOP BAR ── */
+        .topbar {
+            padding: 14px 24px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .topbar-left { display: flex; align-items: center; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: -0.03em; }
+        .logo-mark {
+            width: 28px; height: 28px; background: var(--bg-dark); border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-mark::after {
+            content: ''; width: 10px; height: 10px;
+            border: 2px solid white; border-radius: 2px; transform: rotate(45deg);
+        }
+        .demo-badge {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; padding: 4px 10px;
+            background: var(--blue-bg); color: var(--blue);
+            border-radius: 6px;
+        }
+        .topbar-right { display: flex; align-items: center; gap: 12px; }
+        .step-indicator { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+        .topbar-cta {
+            padding: 7px 16px; background: var(--bg-dark); color: white;
+            border-radius: 8px; font-size: 13px; font-weight: 600;
+            border: none; cursor: pointer; transition: opacity 0.2s;
+        }
+        .topbar-cta:hover { opacity: 0.85; }
+
+        /* ── PROGRESS BAR ── */
+        .progress-bar {
+            height: 3px; background: var(--border);
+        }
+        .progress-fill {
+            height: 100%; background: var(--bg-dark);
+            transition: width 0.4s ease;
+        }
+
+        /* ── MAIN CONTENT ── */
+        .demo-main {
+            flex: 1; display: flex; flex-direction: column;
+            max-width: 1140px; width: 100%; margin: 0 auto; padding: 0 24px;
+        }
+
+        /* ── SLIDES ── */
+        .slide {
+            display: none; flex-direction: column;
+            padding: 48px 0 120px;
+            animation: fadeIn 0.4s ease;
+        }
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-label {
+            font-size: 12px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 14px;
+        }
+        .slide-title {
+            font-size: clamp(28px, 4vw, 40px); font-weight: 700;
+            letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 14px;
+        }
+        .slide-desc {
+            font-size: 17px; color: var(--text-secondary);
+            max-width: 640px; line-height: 1.7; margin-bottom: 40px;
+        }
+
+        /* ── CODE BLOCKS ── */
+        .code-block {
+            background: #1a1a2e; border-radius: 14px; overflow: hidden;
+            border: 1px solid #2a2a3e; margin-bottom: 16px;
+        }
+        .code-block-header {
+            padding: 12px 18px; background: #12121f;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid #2a2a3e;
+        }
+        .code-block-title {
+            font-size: 12px; font-weight: 600; color: #666;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .code-block-badge {
+            font-size: 11px; font-weight: 700; padding: 3px 10px;
+            border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .badge-red { background: rgba(239,68,68,0.15); color: #ef4444; }
+        .badge-green { background: rgba(34,197,94,0.15); color: #22c55e; }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #3b82f6; }
+        .badge-orange { background: rgba(249,115,22,0.15); color: #f97316; }
+        .code-block pre {
+            padding: 18px; font-size: 13px; line-height: 1.65;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            color: #e0e0f0; overflow-x: auto; margin: 0;
+        }
+        .c-comment { color: #6a6a8a; }
+        .c-keyword { color: #c792ea; }
+        .c-string { color: #c3e88d; }
+        .c-func { color: #82aaff; }
+        .c-deco { color: #f78c6c; }
+        .c-num { color: #f78c6c; }
+        .c-dim { color: #4a4a6a; }
+        .c-type { color: #ffcb6b; }
+        .c-var { color: #89ddff; }
+
+        /* ── PROTOCOL GRID ── */
+        .protocol-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+            margin-bottom: 32px;
+        }
+        .protocol-card {
+            background: var(--bg); padding: 20px; border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+        .protocol-card h4 {
+            font-size: 14px; font-weight: 700; margin-bottom: 6px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .protocol-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+        .protocol-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .dot-green { background: var(--green); }
+        .dot-blue { background: var(--blue); }
+        .dot-purple { background: var(--purple); }
+
+        /* ── INFRA REQUIREMENTS ── */
+        .infra-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+            margin-bottom: 32px;
+        }
+        .infra-item {
+            background: var(--red-bg); padding: 16px; border-radius: 12px;
+            border: 1px solid #fecaca; text-align: center;
+        }
+        .infra-item .infra-icon { font-size: 24px; margin-bottom: 6px; }
+        .infra-item span { font-size: 12px; font-weight: 600; color: var(--red); display: block; }
+
+        /* ── BOTTOM LINE BANNER ── */
+        .bottom-line {
+            padding: 20px 24px; border-radius: 14px;
+            border: 1px solid; margin-bottom: 24px;
+        }
+        .bottom-line-red { background: var(--red-bg); border-color: #fecaca; }
+        .bottom-line-green { background: var(--green-bg); border-color: var(--green-border); }
+        .bottom-line h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .bottom-line-red h4 { color: var(--red); }
+        .bottom-line-green h4 { color: #16a34a; }
+        .bottom-line p { font-size: 14px; color: var(--text-secondary); }
+
+        /* ── COMPARISON (slide 2) ── */
+        .comparison-wrapper {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+            margin-bottom: 24px; align-items: start;
+        }
+        .comparison-arrow {
+            display: flex; align-items: center; justify-content: center;
+            margin: 24px 0; gap: 12px;
+        }
+        .comparison-arrow .arrow-line { flex: 1; height: 2px; background: var(--border); }
+        .comparison-arrow .arrow-icon {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--bg-dark); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 700; flex-shrink: 0;
+        }
+
+        /* ── FLOW DIAGRAM (slide 3) ── */
+        .flow-container { margin-bottom: 32px; }
+        .flow-step {
+            display: grid; grid-template-columns: 48px 1fr; gap: 16px;
+            padding: 18px 0; border-bottom: 1px solid var(--border);
+            opacity: 0.3; transition: all 0.5s ease;
+        }
+        .flow-step.flow-active { opacity: 1; }
+        .flow-step:last-child { border-bottom: none; }
+        .flow-num {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 700;
+            background: var(--bg); border: 1px solid var(--border);
+            transition: all 0.5s ease;
+        }
+        .flow-step.flow-active .flow-num {
+            background: var(--bg-dark); color: white; border-color: var(--bg-dark);
+        }
+        .flow-step h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+        .flow-step p { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+        .flow-step .flow-tag {
+            display: inline-block; margin-top: 6px; padding: 2px 8px;
+            font-size: 11px; font-weight: 600; border-radius: 4px;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .tag-agent { background: var(--blue-bg); color: var(--blue); }
+        .tag-seller { background: var(--green-bg); color: #16a34a; }
+        .tag-agentagon { background: var(--purple-bg); color: var(--purple); }
+
+        /* ── DASHBOARD (slide 4) ── */
+        .dashboard-mock {
+            background: var(--bg); border-radius: 16px;
+            border: 1px solid var(--border); overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .dash-topbar {
+            padding: 14px 20px; background: var(--bg-dark); color: white;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .dash-topbar-left { display: flex; align-items: center; gap: 10px; }
+        .dash-topbar-logo { font-weight: 700; font-size: 14px; }
+        .dash-topbar-right { font-size: 12px; color: #aaa; }
+        .dash-sidebar-layout { display: grid; grid-template-columns: 200px 1fr; min-height: 480px; }
+        .dash-sidebar {
+            padding: 16px 0; border-right: 1px solid var(--border); background: var(--bg-warm);
+        }
+        .dash-sidebar a {
+            display: block; padding: 8px 20px; font-size: 13px;
+            color: var(--text-secondary); font-weight: 450;
+            transition: all 0.15s;
+        }
+        .dash-sidebar a.active {
+            color: var(--text-primary); font-weight: 600;
+            background: var(--bg); border-right: 2px solid var(--bg-dark);
+        }
+        .dash-sidebar a:hover { color: var(--text-primary); background: var(--bg); }
+        .dash-content { padding: 24px; }
+        .dash-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.02em; }
+
+        /* Stats row */
+        .dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+        .dash-stat-card {
+            background: var(--bg-warm); padding: 16px; border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .dash-stat-label { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-bottom: 4px; }
+        .dash-stat-value { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+        .dash-stat-change { font-size: 12px; font-weight: 600; margin-top: 2px; }
+        .change-up { color: #16a34a; }
+
+        /* Transaction table */
+        .dash-table { width: 100%; border-collapse: collapse; }
+        .dash-table th {
+            text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+        .dash-table td {
+            padding: 10px 12px; font-size: 13px; border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .dash-table td:first-child { font-family: 'SF Mono', monospace; font-size: 12px; color: var(--text-muted); }
+        .dash-table .status {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+        }
+        .status-settled { background: var(--green-bg); color: #16a34a; }
+        .status-pending { background: var(--orange-bg); color: var(--orange); }
+
+        /* ── FEATURES GRID (slide 5) ── */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+            margin-bottom: 24px;
+        }
+        .feature-card {
+            background: var(--bg); padding: 24px; border-radius: 14px;
+            border: 1px solid var(--border); transition: all 0.3s;
+        }
+        .feature-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+        .feature-icon { font-size: 28px; margin-bottom: 10px; }
+        .feature-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; }
+        .feature-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* ── CTA SLIDE (slide 6) ── */
+        .cta-card {
+            background: var(--bg); border-radius: 20px; padding: 48px;
+            border: 1px solid var(--border); text-align: center;
+            max-width: 560px; margin: 0 auto;
+        }
+        .cta-card h2 { font-size: 28px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+        .cta-card p { font-size: 16px; color: var(--text-secondary); margin-bottom: 28px; line-height: 1.6; }
+        .cta-timeline {
+            font-size: 13px; color: var(--text-muted); margin-top: 16px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .cta-timeline .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+        /* Form in CTA */
+        .cta-form { text-align: left; margin-bottom: 12px; }
+        .cta-form .form-group { margin-bottom: 14px; }
+        .cta-form label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+        .cta-form input, .cta-form select, .cta-form textarea {
+            width: 100%; padding: 10px 14px; border: 1px solid var(--border);
+            border-radius: 10px; font-size: 14px; font-family: inherit;
+            background: var(--bg-warm); transition: border-color 0.2s;
+        }
+        .cta-form input:focus, .cta-form select:focus, .cta-form textarea:focus {
+            outline: none; border-color: var(--text-primary);
+        }
+        .cta-form textarea { resize: vertical; min-height: 60px; }
+        .form-submit {
+            width: 100%; padding: 12px; background: var(--bg-dark); color: white;
+            border: none; border-radius: 10px; font-size: 15px; font-weight: 600;
+            cursor: pointer; transition: opacity 0.2s;
+        }
+        .form-submit:hover { opacity: 0.85; }
+        .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+        .form-success { text-align: center; padding: 24px 0; display: none; }
+        .form-success .checkmark {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: var(--green-bg); border: 1px solid var(--green-border);
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 16px; font-size: 24px;
+        }
+        .form-success h4 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+        .form-success p { font-size: 14px; color: var(--text-secondary); }
+
+        /* ── NAV BUTTONS ── */
+        .slide-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            padding: 16px 24px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+        }
+        .slide-nav-inner {
+            max-width: 1140px; width: 100%; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 22px; border-radius: 10px;
+            font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; border: none;
+        }
+        .nav-btn-prev {
+            background: transparent; color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        .nav-btn-prev:hover { background: var(--bg-warm); color: var(--text-primary); }
+        .nav-btn-next {
+            background: var(--bg-dark); color: white;
+        }
+        .nav-btn-next:hover { opacity: 0.85; }
+        .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .nav-hint { font-size: 13px; color: var(--text-muted); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .protocol-grid { grid-template-columns: 1fr; }
+            .infra-grid { grid-template-columns: repeat(2, 1fr); }
+            .comparison-wrapper { grid-template-columns: 1fr; }
+            .dash-sidebar-layout { grid-template-columns: 1fr; }
+            .dash-sidebar { display: none; }
+            .dash-stats { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .cta-card { padding: 32px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <a href="../" class="logo">
+                <div class="logo-mark"></div>
+                Agentagon
+            </a>
+            <span class="demo-badge">Interactive Demo</span>
+        </div>
+        <div class="topbar-right">
+            <span class="step-indicator" id="stepIndicator">1 / 6</span>
+            <button class="topbar-cta" onclick="goToSlide(6)">Request Access</button>
+        </div>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 16.66%"></div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="demo-main">
+
+        <!-- SLIDE 1: The World Without Agentagon -->
+        <div class="slide active" id="slide-1">
+            <div class="slide-label">Step 1 &mdash; The Problem</div>
+            <h2 class="slide-title">The world without Agentagon</h2>
+            <p class="slide-desc">Here's what <strong class="company-name">your company</strong> would need to build to accept payments from AI agents. Three competing protocols, each with different verification logic.</p>
+
+            <div class="protocol-grid">
+                <div class="protocol-card">
+                    <h4><span class="protocol-dot dot-green"></span> x402 Protocol</h4>
+                    <p>On-chain USDC verification on Base/Solana. Requires wallet setup, signature decoding, and chain-specific RPC calls.</p>
+                </div>
+                <div class="protocol-card">
+                    <h4><span class="protocol-dot dot-blue"></span> MPP (Stripe)</h4>
+                    <p>Machine Payments Protocol via Tempo. Different auth flow, different token format, different settlement rails.</p>
+                </div>
+                <div class="protocol-card">
+                    <h4><span class="protocol-dot dot-purple"></span> ACP / AP2</h4>
+                    <p>Agent Commerce Protocol. Yet another verification scheme, header format, and dispute resolution path.</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-block-header">
+                    <span class="code-block-title">x402 verification alone</span>
+                    <span class="code-block-badge badge-red">48 lines</span>
+                </div>
+                <pre><span class="c-keyword">from</span> web3 <span class="c-keyword">import</span> Web3
+<span class="c-keyword">from</span> eth_account.messages <span class="c-keyword">import</span> encode_defunct
+<span class="c-keyword">import</span> json, base64, time
+
+<span class="c-keyword">def</span> <span class="c-func">verify_x402_payment</span>(request, price_usd):
+    <span class="c-comment"># Extract payment header</span>
+    payment_header = request.headers.get(<span class="c-string">"X-Payment"</span>)
+    <span class="c-keyword">if not</span> payment_header:
+        <span class="c-keyword">return</span> make_402_response(price_usd)
+
+    <span class="c-comment"># Decode and parse payment proof</span>
+    <span class="c-keyword">try</span>:
+        payload = json.loads(base64.b64decode(payment_header))
+    <span class="c-keyword">except</span> Exception:
+        <span class="c-keyword">raise</span> PaymentError(<span class="c-string">"Malformed payment header"</span>)
+
+    <span class="c-comment"># Verify on-chain transaction</span>
+    w3 = Web3(Web3.HTTPProvider(RPC_URL))
+    tx = w3.eth.get_transaction(payload[<span class="c-string">"tx_hash"</span>])
+    <span class="c-keyword">if not</span> tx <span class="c-keyword">or</span> tx[<span class="c-string">"to"</span>].lower() != USDC_CONTRACT.lower():
+        <span class="c-keyword">raise</span> PaymentError(<span class="c-string">"Invalid transaction"</span>)
+
+    <span class="c-comment"># Verify amount matches price</span>
+    decoded = decode_transfer(tx[<span class="c-string">"input"</span>])
+    <span class="c-keyword">if</span> decoded[<span class="c-string">"amount"</span>] < price_to_usdc(price_usd):
+        <span class="c-keyword">raise</span> PaymentError(<span class="c-string">"Insufficient payment"</span>)
+
+    <span class="c-comment"># Verify recipient is our wallet</span>
+    <span class="c-keyword">if</span> decoded[<span class="c-string">"to"</span>].lower() != OUR_WALLET.lower():
+        <span class="c-keyword">raise</span> PaymentError(<span class="c-string">"Wrong recipient"</span>)
+
+    <span class="c-comment"># Verify not replayed</span>
+    <span class="c-keyword">if</span> tx_already_used(payload[<span class="c-string">"tx_hash"</span>]):
+        <span class="c-keyword">raise</span> PaymentError(<span class="c-string">"Replay detected"</span>)
+    mark_tx_used(payload[<span class="c-string">"tx_hash"</span>])
+
+    <span class="c-comment"># Log to ledger (separate system)</span>
+    log_transaction(agent=payload[<span class="c-string">"sender"</span>], amount=price_usd,
+                    endpoint=request.path, protocol=<span class="c-string">"x402"</span>)
+
+    <span class="c-keyword">return</span> <span class="c-keyword">True</span>
+
+<span class="c-dim"># ... and you still need MPP, ACP, AP2 handlers</span>
+<span class="c-dim"># ... plus wallet setup, settlement, invoicing</span>
+<span class="c-dim"># ... plus rate limiting, tiers, API keys</span>
+<span class="c-dim"># ... plus dispute handling, refunds</span></pre>
+            </div>
+
+            <p class="slide-desc" style="margin-bottom: 24px; margin-top: 8px;">And that's just ONE protocol. You'd also need to build:</p>
+
+            <div class="infra-grid">
+                <div class="infra-item">
+                    <div class="infra-icon">&#x1f4b3;</div>
+                    <span>Crypto Wallet</span>
+                </div>
+                <div class="infra-item">
+                    <div class="infra-icon">&#x1f4ca;</div>
+                    <span>Ledger + Invoicing</span>
+                </div>
+                <div class="infra-item">
+                    <div class="infra-icon">&#x1f512;</div>
+                    <span>API Key Mgmt</span>
+                </div>
+                <div class="infra-item">
+                    <div class="infra-icon">&#x26a0;&#xfe0f;</div>
+                    <span>Dispute Handling</span>
+                </div>
+                <div class="infra-item">
+                    <div class="infra-icon">&#x1f4b0;</div>
+                    <span>Settlement Logic</span>
+                </div>
+                <div class="infra-item">
+                    <div class="infra-icon">&#x1f6a6;</div>
+                    <span>Rate Limiting</span>
+                </div>
+                <div class="infra-item">
+                    <div class="infra-icon">&#x1f504;</div>
+                    <span>Multi-Protocol</span>
+                </div>
+                <div class="infra-item">
+                    <div class="infra-icon">&#x1f4c8;</div>
+                    <span>Analytics</span>
+                </div>
+            </div>
+
+            <div class="bottom-line bottom-line-red">
+                <h4>~2,000 lines of payment code. 2-3 months of engineering.</h4>
+                <p>And that's before you handle edge cases, downtime, protocol updates, or scale beyond a single chain.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: With Agentagon -->
+        <div class="slide" id="slide-2">
+            <div class="slide-label">Step 2 &mdash; The Solution</div>
+            <h2 class="slide-title">With Agentagon: 5 lines</h2>
+            <p class="slide-desc">The same API from <strong class="company-name">your company</strong>, now accepting payments from any AI agent. No wallet. No blockchain. No protocol code.</p>
+
+            <div class="comparison-wrapper">
+                <div>
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-block-title">Before</span>
+                            <span class="code-block-badge badge-red">~2,000 lines</span>
+                        </div>
+                        <pre><span class="c-dim">wallet_setup.py .............. 120 lines</span>
+<span class="c-dim">x402_verifier.py ............. 180 lines</span>
+<span class="c-dim">mpp_verifier.py .............. 160 lines</span>
+<span class="c-dim">acp_verifier.py .............. 140 lines</span>
+<span class="c-dim">payment_router.py ............ 90 lines</span>
+<span class="c-dim">ledger.py .................... 220 lines</span>
+<span class="c-dim">invoice_generator.py ......... 180 lines</span>
+<span class="c-dim">dispute_handler.py ........... 150 lines</span>
+<span class="c-dim">rate_limiter.py .............. 80 lines</span>
+<span class="c-dim">api_key_manager.py ........... 120 lines</span>
+<span class="c-dim">settlement_service.py ........ 200 lines</span>
+<span class="c-dim">analytics.py ................. 160 lines</span>
+<span class="c-dim">────────────────────────────────────</span>
+<span class="c-comment">Total: ~1,800 lines + config + tests</span></pre>
+                    </div>
+                </div>
+                <div>
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-block-title">After</span>
+                            <span class="code-block-badge badge-green">5 lines</span>
+                        </div>
+                        <pre>
+<span class="c-keyword">import</span> agentagon
+
+agentagon.init(api_key=<span class="c-string">"ag_live_..."</span>)
+
+<span class="c-deco">@agentagon.paid</span>(<span class="c-string">"$0.01"</span>)
+<span class="c-keyword">def</span> <span class="c-func">get_weather</span>(city: <span class="c-keyword">str</span>):
+    <span class="c-keyword">return</span> {<span class="c-string">"temp"</span>: <span class="c-num">72</span>, <span class="c-string">"conditions"</span>: <span class="c-string">"sunny"</span>}
+
+
+<span class="c-comment"># x402, MPP, ACP, AP2 &mdash; all handled.</span>
+<span class="c-comment"># Wallets, ledger, invoices &mdash; included.</span>
+<span class="c-comment"># Settlement in USDC or fiat.</span>
+<span class="c-comment"># Rate limiting + tiers via dashboard.</span>
+</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-line bottom-line-green">
+                <h4>That's it. Your API now accepts payments from any AI agent.</h4>
+                <p>Every agent that calls your endpoint gets a 402 response with all supported payment protocols. They pay, you serve, Agentagon handles the rest.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Payment Flow -->
+        <div class="slide" id="slide-3">
+            <div class="slide-label">Step 3 &mdash; How It Works</div>
+            <h2 class="slide-title">The payment flow</h2>
+            <p class="slide-desc">What happens when an AI agent calls <strong class="company-name">your company</strong>'s API. Every step is automatic &mdash; no human intervention needed.</p>
+
+            <div class="flow-container" id="flowContainer">
+                <div class="flow-step" data-delay="0">
+                    <div class="flow-num">1</div>
+                    <div>
+                        <h4>Agent discovers your API</h4>
+                        <p>Via <code style="font-family:'SF Mono',monospace;font-size:12px;background:var(--bg-card);padding:2px 6px;border-radius:4px;">.well-known/ag</code> card or agent discovery registry. Your endpoint is listed with pricing and supported protocols.</p>
+                        <span class="flow-tag tag-agent">Agent</span>
+                    </div>
+                </div>
+                <div class="flow-step" data-delay="400">
+                    <div class="flow-num">2</div>
+                    <div>
+                        <h4>Agent calls your endpoint</h4>
+                        <p><code style="font-family:'SF Mono',monospace;font-size:12px;background:var(--bg-card);padding:2px 6px;border-radius:4px;">GET /api/weather?city=NYC</code> &mdash; a normal API request, no payment attached yet.</p>
+                        <span class="flow-tag tag-agent">Agent</span>
+                    </div>
+                </div>
+                <div class="flow-step" data-delay="800">
+                    <div class="flow-num">3</div>
+                    <div>
+                        <h4>Your API returns 402 Payment Required</h4>
+                        <p>Agentagon middleware intercepts the request, responds with pricing and all supported payment protocols (x402, MPP, ACP).</p>
+                        <span class="flow-tag tag-seller">Your API</span>
+                    </div>
+                </div>
+                <div class="flow-step" data-delay="1200">
+                    <div class="flow-num">4</div>
+                    <div>
+                        <h4>Agent pays via preferred protocol</h4>
+                        <p>Agent selects x402 (USDC on Base), signs the payment, and retries the request with the payment header attached.</p>
+                        <span class="flow-tag tag-agent">Agent</span>
+                    </div>
+                </div>
+                <div class="flow-step" data-delay="1600">
+                    <div class="flow-num">5</div>
+                    <div>
+                        <h4>Agentagon verifies payment on-chain</h4>
+                        <p>Payment is verified, logged to the ledger, and the request is forwarded to your actual endpoint handler.</p>
+                        <span class="flow-tag tag-agentagon">Agentagon</span>
+                    </div>
+                </div>
+                <div class="flow-step" data-delay="2000">
+                    <div class="flow-num">6</div>
+                    <div>
+                        <h4>Your API returns the data</h4>
+                        <p>Your endpoint handler runs normally and returns the response. The agent gets its data.</p>
+                        <span class="flow-tag tag-seller">Your API</span>
+                    </div>
+                </div>
+                <div class="flow-step" data-delay="2400">
+                    <div class="flow-num">7</div>
+                    <div>
+                        <h4>Transaction logged + settlement queued</h4>
+                        <p>Transaction appears in your dashboard. Revenue added to your balance. Settlement to your wallet on your configured cycle.</p>
+                        <span class="flow-tag tag-agentagon">Agentagon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Dashboard -->
+        <div class="slide" id="slide-4">
+            <div class="slide-label">Step 4 &mdash; Your Dashboard</div>
+            <h2 class="slide-title"><span class="company-name">Your company</span>'s dashboard</h2>
+            <p class="slide-desc">Everything you need to manage your paid API &mdash; revenue, transactions, invoices, settings. All in one place.</p>
+
+            <div class="dashboard-mock">
+                <div class="dash-topbar">
+                    <div class="dash-topbar-left">
+                        <span class="dash-topbar-logo">Agentagon</span>
+                        <span style="font-size:12px;color:#666;padding:2px 8px;background:#222;border-radius:4px;">Seller</span>
+                    </div>
+                    <div class="dash-topbar-right"><span class="company-name">your company</span> &bull; ag_live_7x...k2m</div>
+                </div>
+                <div class="dash-sidebar-layout">
+                    <div class="dash-sidebar">
+                        <a class="active">Overview</a>
+                        <a>Endpoints</a>
+                        <a>Transactions</a>
+                        <a>Invoices</a>
+                        <a>Analytics</a>
+                        <a>API Keys</a>
+                        <a>Settlement</a>
+                        <a>Settings</a>
+                    </div>
+                    <div class="dash-content">
+                        <div class="dash-title">Revenue Overview</div>
+                        <div class="dash-stats">
+                            <div class="dash-stat-card">
+                                <div class="dash-stat-label">Revenue (this month)</div>
+                                <div class="dash-stat-value">$1,247.32</div>
+                                <div class="dash-stat-change change-up">+23% vs last month</div>
+                            </div>
+                            <div class="dash-stat-card">
+                                <div class="dash-stat-label">Paid API Calls</div>
+                                <div class="dash-stat-value">12,473</div>
+                                <div class="dash-stat-change change-up">+18% vs last month</div>
+                            </div>
+                            <div class="dash-stat-card">
+                                <div class="dash-stat-label">Unique Agent Buyers</div>
+                                <div class="dash-stat-value">31</div>
+                                <div class="dash-stat-change change-up">+7 new this week</div>
+                            </div>
+                        </div>
+                        <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;">Recent Transactions</div>
+                        <table class="dash-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Agent</th>
+                                    <th>Endpoint</th>
+                                    <th>Amount</th>
+                                    <th>Protocol</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2 min ago</td>
+                                    <td>agent-0x7a3f...b2</td>
+                                    <td>/api/weather</td>
+                                    <td>$0.01</td>
+                                    <td>x402</td>
+                                    <td><span class="status status-settled">Settled</span></td>
+                                </tr>
+                                <tr>
+                                    <td>5 min ago</td>
+                                    <td>agent-0x9c1e...d4</td>
+                                    <td>/api/forecast</td>
+                                    <td>$0.05</td>
+                                    <td>MPP</td>
+                                    <td><span class="status status-settled">Settled</span></td>
+                                </tr>
+                                <tr>
+                                    <td>12 min ago</td>
+                                    <td>agent-0x2b8d...a1</td>
+                                    <td>/api/weather</td>
+                                    <td>$0.01</td>
+                                    <td>x402</td>
+                                    <td><span class="status status-pending">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>18 min ago</td>
+                                    <td>agent-0x5f2a...c7</td>
+                                    <td>/api/historical</td>
+                                    <td>$0.10</td>
+                                    <td>ACP</td>
+                                    <td><span class="status status-settled">Settled</span></td>
+                                </tr>
+                                <tr>
+                                    <td>25 min ago</td>
+                                    <td>agent-0x7a3f...b2</td>
+                                    <td>/api/weather</td>
+                                    <td>$0.01</td>
+                                    <td>x402</td>
+                                    <td><span class="status status-settled">Settled</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Beyond Payments -->
+        <div class="slide" id="slide-5">
+            <div class="slide-label">Step 5 &mdash; Beyond Payments</div>
+            <h2 class="slide-title">Everything else you get, for free</h2>
+            <p class="slide-desc">The payment stack is just the beginning. Here's what <strong class="company-name">your company</strong> gets out of the box with every Agentagon integration.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1f6a6;</div>
+                    <h4>Rate Limiting &amp; Tiers</h4>
+                    <p>Configure free, base, pro, and enterprise tiers per endpoint. Set rate limits, price multipliers, and priority levels. All from the dashboard.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1f4ca;</div>
+                    <h4>Performance Analytics</h4>
+                    <p>See how your endpoints perform &mdash; latency, error rates, throughput. Compare against industry benchmarks. Get actionable improvement suggestions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1f310;</div>
+                    <h4>Multi-Protocol Support</h4>
+                    <p>x402, MPP, ACP, AP2 today. New protocols added without touching your code. Your 402 response automatically advertises all supported rails.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1f50d;</div>
+                    <h4>Agent Discovery</h4>
+                    <p>Auto-generate a .well-known/ag card. Register in discovery services like AgentCash and x402scan. Agents find your API without you doing anything.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1f4c4;</div>
+                    <h4>Auto Invoicing</h4>
+                    <p>Invoices generated automatically per buyer, per period. Tax-ready. CSV export or API access. No accounting busywork.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1f4a1;</div>
+                    <h4>Infra Improvement Suggestions</h4>
+                    <p>"Your /weather endpoint has 340ms p95 latency. Here's how to reduce it to 120ms." Agentic analysis of your API performance with concrete recommendations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Get Started -->
+        <div class="slide" id="slide-6">
+            <div class="slide-label">Step 6 &mdash; Get Started</div>
+            <h2 class="slide-title" style="text-align:center;">Ready to monetize<br><span class="company-name">your company</span>'s APIs?</h2>
+
+            <div class="cta-card">
+                <div id="ctaForm">
+                    <p>Join the first wave of API sellers monetizing agent traffic. Most go from signup to first paid API call in under 5 minutes.</p>
+                    <form class="cta-form" onsubmit="handleDemoSubmit(event)">
+                        <div class="form-group">
+                            <label for="d-name">Name</label>
+                            <input type="text" id="d-name" name="name" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="d-email">Email</label>
+                            <input type="email" id="d-email" name="email" placeholder="you@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="d-api">What API do you want to monetize?</label>
+                            <input type="text" id="d-api" name="api" placeholder="e.g. Weather API, Image Generation, Data Feed...">
+                        </div>
+                        <div class="form-group">
+                            <label for="d-usecase">Anything else?</label>
+                            <textarea id="d-usecase" name="usecase" placeholder="Tell us about your API, expected volume, or questions..." rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="form-submit" id="demoSubmitBtn">Request Early Access</button>
+                    </form>
+                </div>
+                <div class="form-success" id="demoFormSuccess">
+                    <div class="checkmark">&#10003;</div>
+                    <h4>You're on the list</h4>
+                    <p>We'll reach out soon with next steps. Keep an eye on your inbox.</p>
+                </div>
+                <div class="cta-timeline">
+                    <span class="dot"></span>
+                    Most sellers go from signup to first paid API call in under 5 minutes
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="slide-nav">
+        <div class="slide-nav-inner">
+            <button class="nav-btn nav-btn-prev" id="prevBtn" onclick="prev()" disabled>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3m0 0l4-4M3 8l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back
+            </button>
+            <span class="nav-hint" id="navHint">Click to continue</span>
+            <button class="nav-btn nav-btn-next" id="nextBtn" onclick="next()">
+                Next
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Company name from URL or query param (fallback for 404 redirect)
+        function getCompanyName() {
+            // First check query param (set by 404.html redirect)
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('company')) {
+                return decodeURIComponent(params.get('company'));
+            }
+            // Then check URL path: /demo/acme/ → "Acme"
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            const demoIndex = pathParts.indexOf('demo');
+            if (demoIndex !== -1 && pathParts[demoIndex + 1]) {
+                const raw = decodeURIComponent(pathParts[demoIndex + 1]).replace(/\.html$/, '');
+                if (raw && raw !== 'index') {
+                    // Capitalize first letter of each word, replace hyphens/underscores with spaces
+                    return raw.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                }
+            }
+            return 'Your Company';
+        }
+
+        const companyName = getCompanyName();
+
+        // Clean up URL if redirected via query param (remove ?company= from address bar)
+        if (window.location.search.includes('company=')) {
+            const cleanPath = '/demo/' + encodeURIComponent(companyName.toLowerCase().replace(/\s+/g, '-')) + '/';
+            window.history.replaceState({}, '', cleanPath);
+        }
+
+        // Set company name everywhere
+        document.querySelectorAll('.company-name').forEach(el => {
+            el.textContent = companyName;
+        });
+        document.title = `Agentagon Demo \u2014 ${companyName}`;
+
+        // Slide navigation
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        const hints = {
+            1: 'See what changes with Agentagon',
+            2: 'See the payment flow in action',
+            3: 'See your seller dashboard',
+            4: 'See what else you get',
+            5: 'Get started',
+            6: ''
+        };
+
+        function goToSlide(n) {
+            if (n < 1 || n > totalSlides) return;
+            document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+            currentSlide = n;
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+            updateNav();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Trigger flow animation on slide 3
+            if (currentSlide === 3) {
+                animateFlow();
+            }
+        }
+
+        function next() { goToSlide(currentSlide + 1); }
+        function prev() { goToSlide(currentSlide - 1); }
+
+        function updateNav() {
+            document.getElementById('stepIndicator').textContent = `${currentSlide} / ${totalSlides}`;
+            document.getElementById('progressFill').style.width = `${(currentSlide / totalSlides) * 100}%`;
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').style.display = currentSlide === totalSlides ? 'none' : 'inline-flex';
+            document.getElementById('navHint').textContent = hints[currentSlide] || '';
+        }
+
+        // Flow animation for slide 3
+        function animateFlow() {
+            const steps = document.querySelectorAll('#flowContainer .flow-step');
+            steps.forEach(step => step.classList.remove('flow-active'));
+
+            steps.forEach((step, i) => {
+                setTimeout(() => {
+                    step.classList.add('flow-active');
+                }, parseInt(step.dataset.delay) || i * 400);
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+        });
+
+        // Form submission
+        function handleDemoSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('demoSubmitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+
+            const data = {
+                Name: document.getElementById('d-name').value,
+                Email: document.getElementById('d-email').value,
+                'API to monetize': document.getElementById('d-api').value,
+                'Use case': document.getElementById('d-usecase').value,
+                'Demo company': companyName,
+                Source: 'demo-page'
+            };
+
+            fetch('https://formcarry.com/s/Xz9dYSKKcM1', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(() => {
+                document.getElementById('ctaForm').style.display = 'none';
+                document.getElementById('demoFormSuccess').style.display = 'block';
+            })
+            .catch(() => {
+                btn.disabled = false;
+                btn.textContent = 'Request Early Access';
+                alert('Something went wrong. Please try again.');
+            });
+        }
+
+        // Init
+        updateNav();
+    </script>
+</body>
+</html>

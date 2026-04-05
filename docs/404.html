@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // GitHub Pages SPA redirect for /demo/<company_name>/ routes
+        (function() {
+            var path = window.location.pathname;
+            var match = path.match(/^\/demo\/([^\/]+)\/?$/);
+            if (match) {
+                var company = decodeURIComponent(match[1]);
+                window.location.replace('/demo/?company=' + encodeURIComponent(company));
+            } else {
+                // Not a demo route — redirect to home
+                window.location.replace('/');
+            }
+        })();
+    </script>
+</head>
+<body></body>
+</html>
