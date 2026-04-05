@@ -885,12 +885,17 @@ agentagon.init(api_key=<span class="c-string">"ag_live_..."</span>)
     </div>
 
     <script>
+        // Convert slug to display name: "weather_api" → "Weather Api", "my-company" → "My Company"
+        function formatCompanyName(raw) {
+            return raw.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        }
+
         // Company name from URL or query param (fallback for 404 redirect)
         function getCompanyName() {
             // First check query param (set by 404.html redirect)
             const params = new URLSearchParams(window.location.search);
             if (params.get('company')) {
-                return decodeURIComponent(params.get('company'));
+                return formatCompanyName(decodeURIComponent(params.get('company')));
             }
             // Then check URL path: /demo/acme/ → "Acme"
             const pathParts = window.location.pathname.split('/').filter(Boolean);
@@ -898,8 +903,7 @@ agentagon.init(api_key=<span class="c-string">"ag_live_..."</span>)
             if (demoIndex !== -1 && pathParts[demoIndex + 1]) {
                 const raw = decodeURIComponent(pathParts[demoIndex + 1]).replace(/\.html$/, '');
                 if (raw && raw !== 'index') {
-                    // Capitalize first letter of each word, replace hyphens/underscores with spaces
-                    return raw.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                    return formatCompanyName(raw);
                 }
             }
             return 'Your Company';
