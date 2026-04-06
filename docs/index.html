@@ -7,7 +7,7 @@
     <meta name="description" content="The payment middleware for the agentic economy. Add one decorator, and your API accepts payments from any AI agent. No blockchain knowledge required.">
     <meta name="theme-color" content="#111111">
     <meta property="og:title" content="Agentagon | Make Any API Agent-Payable">
-    <meta property="og:description" content="5 lines of code. Full payment stack. Accept payments from any AI agent — x402, MPP, ACP, and more.">
+    <meta property="og:description" content="5 lines of code. Full payment stack. Accept payments from any AI agent: x402, MPP, ACP, and more.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://agentagon.ai">
     <meta name="twitter:card" content="summary">
@@ -431,6 +431,36 @@
         .form-success h4 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
         .form-success p { font-size: 14px; color: var(--text-secondary); }
 
+        /* ── INTEGRATION TABS ── */
+        .integration-tabs {
+            display: flex; gap: 8px; margin-bottom: 32px;
+        }
+        .integration-tab {
+            padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border); background: var(--bg-warm);
+            color: var(--text-secondary); transition: all 0.2s;
+        }
+        .integration-tab:hover { border-color: var(--border-hover); color: var(--text-primary); }
+        .integration-tab.active {
+            background: var(--bg-dark); color: white; border-color: var(--bg-dark);
+        }
+        .integration-panel { display: none; }
+        .integration-panel.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .proxy-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+        .proxy-step {
+            background: var(--bg-warm); padding: 20px; border-radius: 14px;
+            border: 1px solid var(--border); text-align: center;
+        }
+        .proxy-step-num {
+            width: 32px; height: 32px; border-radius: 8px; background: var(--bg-dark);
+            color: white; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 700; margin-bottom: 10px;
+        }
+        .proxy-step h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .proxy-step p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
         /* ── FADE IN ── */
         .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -449,6 +479,8 @@
             .problem-stats { grid-template-columns: 1fr; }
             .solution-grid { grid-template-columns: 1fr !important; }
             .code-comparison { grid-template-columns: 1fr; }
+            .proxy-steps { grid-template-columns: 1fr; }
+            .integration-tabs { flex-wrap: wrap; }
             .code-arrow { display: none; }
             .footer-content { flex-direction: column; gap: 20px; text-align: center; }
             .footer-left { flex-direction: column; gap: 6px; }
@@ -480,9 +512,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-eyebrow">Agentagon</div>
-            <h1>Make any API agent&#8209;payable. In&nbsp;5&nbsp;lines.</h1>
+            <h1>Make any API agent&#8209;payable. In&nbsp;minutes.</h1>
             <p class="hero-sub">
-                Agentagon is the payment middleware for the agentic economy. Add one decorator, and your API accepts payments from any AI agent &mdash; x402, MPP, ACP, and more. No blockchain knowledge required.
+                Agentagon is the payment middleware for the agentic economy. Add a decorator to your code, or just give us your API endpoint. We handle payments from any AI agent. x402, MPP, ACP, and more. No blockchain knowledge required.
             </p>
             <div class="hero-actions">
                 <button class="btn-primary" onclick="openModal()">
@@ -505,11 +537,11 @@
             <div class="problem-grid">
                 <div class="problem-card">
                     <h3>Protocol Chaos</h3>
-                    <p>x402, MPP, ACP, AP2 &mdash; four competing payment protocols and counting. Supporting even one requires crypto wallet setup, on-chain verification, and settlement logic. Most API sellers just don't bother.</p>
+                    <p>x402, MPP, ACP, AP2: four competing payment protocols and counting. Supporting even one requires crypto wallet setup, on-chain verification, and settlement logic. Most API sellers just don't bother.</p>
                 </div>
                 <div class="problem-card">
                     <h3>Infrastructure Tax</h3>
-                    <p>2-3 months of engineering to build billing infrastructure &mdash; API keys, payment verification, invoicing, dispute handling. That's thousands of lines of code that have nothing to do with your core product.</p>
+                    <p>2-3 months of engineering to build billing infrastructure: API keys, payment verification, invoicing, dispute handling. That's thousands of lines of code that have nothing to do with your core product.</p>
                 </div>
                 <div class="problem-card">
                     <h3>Invisible Revenue</h3>
@@ -536,22 +568,30 @@
         </div>
     </section>
 
-    <!-- CODE COMPARISON -->
+    <!-- INTEGRATION OPTIONS -->
     <section class="code-section fade-in" id="code">
         <div class="container">
             <div class="code-header">
-                <div class="section-label">Before &amp; After</div>
-                <h2 class="section-title">From 2,000 lines to 5.</h2>
-                <p class="section-desc">Everything on the left is what you'd build yourself. Everything on the right is what Agentagon replaces it with.</p>
+                <div class="section-label">Two Ways to Integrate</div>
+                <h2 class="section-title">Your API. Your way.</h2>
+                <p class="section-desc">Add a decorator to your code, or just point us to your endpoint. Either way, you're accepting agent payments in minutes.</p>
             </div>
-            <div class="code-comparison-wrapper">
-                <div class="code-comparison">
-                    <div class="code-block">
-                        <div class="code-block-header">
-                            <span class="code-block-title">Without Agentagon</span>
-                            <span class="code-block-badge badge-red">~2,000 lines</span>
-                        </div>
-                        <pre><span class="comment"># Wallet setup</span>
+
+            <div class="integration-tabs">
+                <button class="integration-tab active" onclick="switchTab('sdk')">SDK: Add to Your Code</button>
+                <button class="integration-tab" onclick="switchTab('proxy')">Proxy: Zero Code Changes</button>
+            </div>
+
+            <!-- SDK TAB -->
+            <div class="integration-panel active" id="tab-sdk">
+                <div class="code-comparison-wrapper">
+                    <div class="code-comparison">
+                        <div class="code-block">
+                            <div class="code-block-header">
+                                <span class="code-block-title">Without Agentagon</span>
+                                <span class="code-block-badge badge-red">~2,000 lines</span>
+                            </div>
+                            <pre><span class="comment"># Wallet setup</span>
 <span class="keyword">from</span> coinbase <span class="keyword">import</span> CoinbaseClient
 wallet = CoinbaseClient(api_key=<span class="string">"..."</span>)
 
@@ -574,19 +614,18 @@ wallet = CoinbaseClient(api_key=<span class="string">"..."</span>)
     <span class="keyword">if</span> should_invoice(agent):
         generate_invoice(agent)
 
-<span class="comment"># Dispute handling...</span>
 <span class="comment"># Settlement logic...</span>
 <span class="comment"># API key management...</span>
 <span class="comment"># Rate limiting per tier...</span>
 <span class="dim"># ... 1,950 more lines ...</span></pre>
-                        <div class="code-line-count">+ wallet setup, settlement, invoicing, disputes, rate limiting, API keys...</div>
-                    </div>
-                    <div class="code-block">
-                        <div class="code-block-header">
-                            <span class="code-block-title">With Agentagon</span>
-                            <span class="code-block-badge badge-green">5 lines</span>
+                            <div class="code-line-count">+ wallet setup, settlement, invoicing, rate limiting, API keys...</div>
                         </div>
-                        <pre>
+                        <div class="code-block">
+                            <div class="code-block-header">
+                                <span class="code-block-title">With Agentagon SDK</span>
+                                <span class="code-block-badge badge-green">5 lines</span>
+                            </div>
+                            <pre>
 <span class="keyword">import</span> agentagon
 
 agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
@@ -597,15 +636,47 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
 
 
 <span class="comment"># That's it.</span>
-<span class="comment"># x402, MPP, ACP, AP2 &mdash; all supported.</span>
-<span class="comment"># Wallets, ledger, invoices &mdash; handled.</span>
-<span class="comment"># Settlement in USDC or fiat &mdash; your choice.</span>
-<span class="comment"># Rate limiting, tiers &mdash; configured in dashboard.</span>
-
-
-
-
+<span class="comment"># x402, MPP, ACP, AP2 - all supported.</span>
+<span class="comment"># Wallets, ledger, invoices - handled.</span>
+<span class="comment"># Settlement in USDC or fiat - your choice.</span>
+<span class="comment"># Rate limiting, tiers - configured in dashboard.</span>
 </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROXY TAB -->
+            <div class="integration-panel" id="tab-proxy">
+                <div class="code-block" style="margin-bottom: 0;">
+                    <div class="code-block-header">
+                        <span class="code-block-title">Your Code Changes</span>
+                        <span class="code-block-badge badge-green">0 lines</span>
+                    </div>
+                    <pre>
+<span class="comment"># Your existing API stays exactly as it is.</span>
+<span class="comment"># No SDK. No decorator. No imports. Nothing.</span>
+<span class="comment">#</span>
+<span class="comment"># Just give Agentagon your endpoint URL and pricing.</span>
+<span class="comment"># We create a paid proxy endpoint that agents call instead.</span>
+<span class="comment"># Payments verified, requests forwarded, revenue tracked.</span>
+</pre>
+                </div>
+                <div class="proxy-steps">
+                    <div class="proxy-step">
+                        <div class="proxy-step-num">1</div>
+                        <h4>Register your endpoint</h4>
+                        <p>Give us your API URL and set your price per call. Dashboard or API.</p>
+                    </div>
+                    <div class="proxy-step">
+                        <div class="proxy-step-num">2</div>
+                        <h4>We create a paid endpoint</h4>
+                        <p>Agents call your Agentagon URL. We verify payments and proxy to your origin.</p>
+                    </div>
+                    <div class="proxy-step">
+                        <div class="proxy-step-num">3</div>
+                        <h4>You get paid</h4>
+                        <p>Same dashboard, same ledger, same settlement. Zero code on your side.</p>
                     </div>
                 </div>
             </div>
@@ -628,7 +699,7 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 <div class="solution-card">
                     <div class="solution-label">Settlement</div>
                     <h3>Get Paid Your Way</h3>
-                    <p>Payments go to your Agentagon wallet. Withdraw as USDC, ETH, or fiat &mdash; your choice. Daily or weekly settlement cycles. You never touch a blockchain.</p>
+                    <p>Payments go to your Agentagon wallet. Withdraw as USDC, ETH, or fiat. Your choice. Daily or weekly settlement cycles. You never touch a blockchain.</p>
                 </div>
                 <div class="solution-card">
                     <div class="solution-label">Ledger</div>
@@ -712,7 +783,7 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                     <div class="how-step-num">4</div>
                     <div>
                         <h3>You get paid</h3>
-                        <p>Agentagon verifies payments, logs transactions, and settles to your wallet. View everything in your dashboard &mdash; revenue, agents, invoices, analytics.</p>
+                        <p>Agentagon verifies payments, logs transactions, and settles to your wallet. View everything in your dashboard: revenue, agents, invoices, analytics.</p>
                     </div>
                 </div>
             </div>
@@ -736,13 +807,13 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 <div class="market-card">
                     <div class="stat-highlight">150M+</div>
                     <h3>Payment Rails are Maturing</h3>
-                    <p>150M x402 transactions processed. Stripe and Paradigm launched MPP. ACP gaining traction. The payment rails exist &mdash; sellers need a bridge to use them.</p>
+                    <p>150M x402 transactions processed. Stripe and Paradigm launched MPP. ACP gaining traction. The payment rails exist. Sellers need a bridge to use them.</p>
                     <div class="punchline">Coinbase, Stripe</div>
                 </div>
                 <div class="market-card">
                     <div class="stat-highlight">1 in 4</div>
                     <h3>Developers are Ready</h3>
-                    <p>25% of developers now design APIs for AI agents. But only a fraction can accept agent payments. The demand is there &mdash; the infrastructure isn't.</p>
+                    <p>25% of developers now design APIs for AI agents. But only a fraction can accept agent payments. The demand is there, but the infrastructure isn't.</p>
                     <div class="punchline">Postman State of API 2025</div>
                 </div>
             </div>
@@ -763,23 +834,11 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 </details>
                 <details>
                     <summary>What payment protocols do you support?</summary>
-                    <div class="faq-answer">x402 (USDC on Base and Solana), MPP (Stripe/Tempo fiat rails), ACP, and AP2. New protocols are added on our side without any code changes on yours. Your endpoint automatically advertises all supported protocols.</div>
-                </details>
-                <details>
-                    <summary>What's the business model?</summary>
-                    <div class="faq-answer">We take a small percentage (3&ndash;5%) of each transaction as the facilitator. Free during beta &mdash; no charges until you're seeing real revenue from agent traffic.</div>
-                </details>
-                <details>
-                    <summary>Is this production-ready?</summary>
-                    <div class="faq-answer">We're onboarding design partners now. We handle manual reconciliation and payout where needed to get you started fast, then automate as we scale. If you're running an API that agents are already calling, we can get you monetizing within a week.</div>
+                    <div class="faq-answer">x402, MPP, ACP, and AP2. New protocols are added without any code changes on your side. Your endpoint automatically advertises all supported protocols.</div>
                 </details>
                 <details>
                     <summary>Where is my money held?</summary>
-                    <div class="faq-answer">Payments go to Agentagon's escrow wallet. You configure your preferred settlement currency (USDC, ETH, or fiat) and cycle (daily, weekly, or instant). Funds are settled to your wallet or bank account on schedule.</div>
-                </details>
-                <details>
-                    <summary>Do I need to change my existing API code?</summary>
-                    <div class="faq-answer">Minimal changes. Install the SDK, initialize with your API key, and wrap your endpoints with a decorator. Your business logic stays exactly the same &mdash; Agentagon only intercepts the payment layer.</div>
+                    <div class="faq-answer">You choose. Payments can go directly to your own wallet, or to Agentagon's escrow wallet for managed settlement. Configure your preferred currency (USDC, ETH, or fiat) and cycle (daily, weekly, or instant).</div>
                 </details>
             </div>
         </div>
@@ -794,7 +853,7 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 Request Early Access
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <p class="cta-pricing"><span class="dot"></span> Free during beta &mdash; no credit card required.</p>
+            <p class="cta-pricing"><span class="dot"></span> Free during beta. No credit card required.</p>
         </div>
     </section>
 
@@ -902,6 +961,14 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 }
             });
         });
+
+        // Integration tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.integration-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.integration-panel').forEach(p => p.classList.remove('active'));
+            document.querySelector(`.integration-tab[onclick*="${tab}"]`).classList.add('active');
+            document.getElementById('tab-' + tab).classList.add('active');
+        }
 
         // Modal
         function openModal() {
