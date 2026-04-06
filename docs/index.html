@@ -237,7 +237,7 @@
         /* ── SOLUTION ── */
         .solution-section { border-top: 1px solid var(--border); background: var(--bg-warm); }
         .solution-header { margin-bottom: 56px; }
-        .solution-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .solution-card {
             background: var(--bg); padding: 36px 28px; border-radius: 16px;
             border: 1px solid var(--border); border-top: 3px solid var(--green);
@@ -246,6 +246,8 @@
         .solution-card:nth-child(2) { border-top-color: var(--blue); }
         .solution-card:nth-child(3) { border-top-color: var(--purple); }
         .solution-card:nth-child(4) { border-top-color: var(--red); }
+        .solution-card:nth-child(5) { border-top-color: #f97316; }
+        .solution-card:nth-child(6) { border-top-color: #0d9488; }
         .solution-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
         .solution-label {
             font-size: 12px; font-weight: 600; text-transform: uppercase;
@@ -255,6 +257,8 @@
         .solution-card:nth-child(2) .solution-label { color: var(--blue); }
         .solution-card:nth-child(3) .solution-label { color: var(--purple); }
         .solution-card:nth-child(4) .solution-label { color: var(--red); }
+        .solution-card:nth-child(5) .solution-label { color: #f97316; }
+        .solution-card:nth-child(6) .solution-label { color: #0d9488; }
         .solution-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.02em; }
         .solution-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
 
@@ -304,6 +308,53 @@
             background: var(--bg); padding: 2px 8px; border-radius: 6px;
             font-size: 13px; border: 1px solid var(--border);
         }
+
+        /* ── CALLOUT ── */
+        .callout-section { border-top: 1px solid var(--border); background: var(--bg); }
+        .callout-header { margin-bottom: 40px; }
+        .callout-items { display: flex; flex-direction: column; gap: 0; }
+        .callout-item {
+            display: grid; grid-template-columns: 28px 1fr; gap: 14px;
+            padding: 16px 0; border-bottom: 1px solid var(--border); align-items: start;
+        }
+        .callout-item:last-child { border-bottom: none; }
+        .callout-icon { font-size: 18px; padding-top: 1px; }
+        .callout-item p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; }
+        .callout-item strong { color: var(--text-primary); }
+
+        /* ── FAQ ── */
+        .faq-section { border-top: 1px solid var(--border); background: var(--bg-warm); }
+        .faq-header { margin-bottom: 40px; }
+        .faq-list { max-width: 760px; }
+        .faq-list details {
+            border-bottom: 1px solid var(--border); overflow: hidden;
+        }
+        .faq-list details:last-child { border-bottom: none; }
+        .faq-list summary {
+            padding: 20px 0; font-size: 16px; font-weight: 600;
+            cursor: pointer; list-style: none; display: flex;
+            justify-content: space-between; align-items: center;
+            color: var(--text-primary); transition: color 0.2s;
+        }
+        .faq-list summary::-webkit-details-marker { display: none; }
+        .faq-list summary::after {
+            content: '+'; font-size: 20px; font-weight: 400;
+            color: var(--text-muted); transition: transform 0.2s;
+            flex-shrink: 0; margin-left: 16px;
+        }
+        .faq-list details[open] summary::after { content: '\2212'; }
+        .faq-list details[open] summary { color: var(--text-primary); }
+        .faq-list .faq-answer {
+            padding: 0 0 20px; font-size: 15px;
+            color: var(--text-secondary); line-height: 1.7; max-width: 640px;
+        }
+
+        /* ── PRICING HINT ── */
+        .cta-pricing {
+            font-size: 13px; color: var(--text-muted); margin-top: 14px;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .cta-pricing .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
 
         /* ── CTA ── */
         .cta-section { padding: 100px 0; border-top: 1px solid var(--border); background: var(--bg); text-align: center; }
@@ -396,7 +447,7 @@
             .hero { padding: 130px 0 80px; }
             .problem-grid, .market-grid { grid-template-columns: 1fr; }
             .problem-stats { grid-template-columns: 1fr; }
-            .solution-grid { grid-template-columns: 1fr; }
+            .solution-grid { grid-template-columns: 1fr !important; }
             .code-comparison { grid-template-columns: 1fr; }
             .code-arrow { display: none; }
             .footer-content { flex-direction: column; gap: 20px; text-align: center; }
@@ -589,6 +640,41 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                     <h3>No Wallet. No Infra. No Hassle.</h3>
                     <p>No wallet setup. No blockchain knowledge. No servers to manage. Agentagon handles facilitator verification, escrow, settlement, rate limiting, and dispute resolution.</p>
                 </div>
+                <div class="solution-card">
+                    <div class="solution-label">Spend Governance</div>
+                    <h3>Per-Agent Budgets &amp; Controls</h3>
+                    <p>Set per-agent spending limits, daily caps, and category restrictions. Policies are enforced before the payment goes through. CFOs and compliance teams get the controls they need.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-label">Audit Trail</div>
+                    <h3>Full History. Always Exportable.</h3>
+                    <p>Every transaction logged by agent, endpoint, buyer, and time. Structured logs and webhooks for engineering. CSV export and compliance-ready reports for finance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUILT FOR AGENTS -->
+    <section class="callout-section fade-in">
+        <div class="container">
+            <div class="callout-header">
+                <div class="section-label">Built Different</div>
+                <h2 class="section-title">Built for agents, not humans.</h2>
+                <p class="section-desc">Traditional payment infrastructure assumes a human behind a browser. The agentic economy doesn't work that way.</p>
+            </div>
+            <div class="callout-items">
+                <div class="callout-item">
+                    <span class="callout-icon">&#x1f6ab;</span>
+                    <p><strong>Human checkout flows require browser sessions.</strong> Agents call APIs. They need machine-readable 402 responses, not redirect URLs.</p>
+                </div>
+                <div class="callout-item">
+                    <span class="callout-icon">&#x1f4b8;</span>
+                    <p><strong>Fixed billing cycles don't fit per-call micropayments.</strong> Agent transactions are $0.001&ndash;$0.10 each, thousands per minute. You need per-call settlement, not monthly invoices.</p>
+                </div>
+                <div class="callout-item">
+                    <span class="callout-icon">&#x1f517;</span>
+                    <p><strong>No existing provider speaks x402, MPP, or ACP natively.</strong> Agentagon does. One integration, every agent payment protocol, today and tomorrow.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -663,6 +749,42 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section fade-in" id="faq">
+        <div class="container">
+            <div class="faq-header">
+                <div class="section-label">FAQ</div>
+                <h2 class="section-title">Common questions.</h2>
+            </div>
+            <div class="faq-list">
+                <details>
+                    <summary>Do I need to know anything about crypto or blockchain?</summary>
+                    <div class="faq-answer">No. You never touch a wallet, sign a transaction, or think about chains. Agentagon handles all blockchain interactions on your behalf. You just add a decorator and get paid.</div>
+                </details>
+                <details>
+                    <summary>What payment protocols do you support?</summary>
+                    <div class="faq-answer">x402 (USDC on Base and Solana), MPP (Stripe/Tempo fiat rails), ACP, and AP2. New protocols are added on our side without any code changes on yours. Your endpoint automatically advertises all supported protocols.</div>
+                </details>
+                <details>
+                    <summary>What's the business model?</summary>
+                    <div class="faq-answer">We take a small percentage (3&ndash;5%) of each transaction as the facilitator. Free during beta &mdash; no charges until you're seeing real revenue from agent traffic.</div>
+                </details>
+                <details>
+                    <summary>Is this production-ready?</summary>
+                    <div class="faq-answer">We're onboarding design partners now. We handle manual reconciliation and payout where needed to get you started fast, then automate as we scale. If you're running an API that agents are already calling, we can get you monetizing within a week.</div>
+                </details>
+                <details>
+                    <summary>Where is my money held?</summary>
+                    <div class="faq-answer">Payments go to Agentagon's escrow wallet. You configure your preferred settlement currency (USDC, ETH, or fiat) and cycle (daily, weekly, or instant). Funds are settled to your wallet or bank account on schedule.</div>
+                </details>
+                <details>
+                    <summary>Do I need to change my existing API code?</summary>
+                    <div class="faq-answer">Minimal changes. Install the SDK, initialize with your API key, and wrap your endpoints with a decorator. Your business logic stays exactly the same &mdash; Agentagon only intercepts the payment layer.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section">
         <div class="container">
@@ -672,6 +794,7 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 Request Early Access
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
+            <p class="cta-pricing"><span class="dot"></span> Free during beta &mdash; no credit card required.</p>
         </div>
     </section>
 
@@ -717,6 +840,25 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                             <option value="platform">Platform integrating agent payments</option>
                             <option value="research">Research / exploring agentic commerce</option>
                             <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="volume">Monthly API calls (approx)</label>
+                        <select id="volume" name="volume">
+                            <option value="" disabled selected>Select volume</option>
+                            <option value="<1K">Under 1,000</option>
+                            <option value="1K-10K">1,000 - 10,000</option>
+                            <option value="10K-100K">10,000 - 100,000</option>
+                            <option value="100K+">100,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="agentpay">Do you currently accept agent payments?</label>
+                        <select id="agentpay" name="agentpay">
+                            <option value="" disabled selected>Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="exploring">Exploring</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -783,6 +925,8 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 Name: document.getElementById('name').value,
                 Email: document.getElementById('email').value,
                 'What are you building': document.getElementById('role').value,
+                'Monthly API calls': document.getElementById('volume').value,
+                'Accept agent payments': document.getElementById('agentpay').value,
                 'Use case': document.getElementById('usecase').value
             };
 
