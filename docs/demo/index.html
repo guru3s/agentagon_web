@@ -560,8 +560,8 @@
         <!-- SLIDE 2: With Agentagon -->
         <div class="slide" id="slide-2">
             <div class="slide-label">Step 2 - The Solution</div>
-            <h2 class="slide-title">With Agentagon: 5 lines</h2>
-            <p class="slide-desc">The same API from <strong class="company-name">your company</strong>, now accepting payments from any AI agent. No wallet. No blockchain. No protocol code.</p>
+            <h2 class="slide-title">With Agentagon: Zero code changes</h2>
+            <p class="slide-desc">The same API from <strong class="company-name">your company</strong>, now accepting payments from any AI agent. No wallet. No blockchain. No protocol code. No changes to your codebase.</p>
 
             <div class="comparison-wrapper">
                 <div>
@@ -590,30 +590,34 @@
                     <div class="code-block">
                         <div class="code-block-header">
                             <span class="code-block-title">After</span>
-                            <span class="code-block-badge badge-green">5 lines</span>
+                            <span class="code-block-badge badge-green">0 lines changed</span>
                         </div>
                         <pre>
-<span class="c-keyword">import</span> agentagon
-
-agentagon.init(api_key=<span class="c-string">"ag_live_..."</span>)
-
-<span class="c-deco">@agentagon.paid</span>(<span class="c-string">"$0.01"</span>)
-<span class="c-keyword">def</span> <span class="c-func">get_weather</span>(city: <span class="c-keyword">str</span>):
-    <span class="c-keyword">return</span> {<span class="c-string">"temp"</span>: <span class="c-num">72</span>, <span class="c-string">"conditions"</span>: <span class="c-string">"sunny"</span>}
-
-
+<span class="c-comment"># Your existing API stays exactly as it is.</span>
+<span class="c-comment"># No SDK. No decorator. No imports.</span>
+<span class="c-comment">#</span>
+<span class="c-comment"># Step 1: Register your endpoint in Agentagon dashboard</span>
+<span class="c-comment"># Step 2: Set your price per call ($0.01, $0.10, etc.)</span>
+<span class="c-comment"># Step 3: We create a paid proxy URL for agents</span>
+<span class="c-comment">#</span>
+<span class="c-comment"># Agents call pay.agentagon.ai/<span class="company-name">your-company</span>/weather</span>
+<span class="c-comment"># We verify payment, forward to your origin, you get paid.</span>
+<span class="c-comment">#</span>
 <span class="c-comment"># x402, MPP, ACP, AP2 - all handled.</span>
 <span class="c-comment"># Wallets, ledger, invoices - included.</span>
 <span class="c-comment"># Settlement in USDC or fiat.</span>
 <span class="c-comment"># Rate limiting + tiers via dashboard.</span>
 </pre>
                     </div>
+                    <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted);">
+                        Want inline control? Use our SDK decorator or framework middleware instead.
+                    </div>
                 </div>
             </div>
 
             <div class="bottom-line bottom-line-green">
                 <h4>That's it. Your API now accepts payments from any AI agent.</h4>
-                <p>Every agent that calls your endpoint gets a 402 response with all supported payment protocols. They pay, you serve, Agentagon handles the rest.</p>
+                <p>Every agent that calls your proxy endpoint gets a 402 response with all supported payment protocols. They pay, we forward the request to your API, you serve.</p>
             </div>
         </div>
 
@@ -635,17 +639,17 @@ agentagon.init(api_key=<span class="c-string">"ag_live_..."</span>)
                 <div class="flow-step" data-delay="400">
                     <div class="flow-num">2</div>
                     <div>
-                        <h4>Agent calls your endpoint</h4>
-                        <p><code style="font-family:'SF Mono',monospace;font-size:12px;background:var(--bg-card);padding:2px 6px;border-radius:4px;">GET /api/weather?city=NYC</code>, a normal API request, no payment attached yet.</p>
+                        <h4>Agent calls your proxy endpoint</h4>
+                        <p><code style="font-family:'SF Mono',monospace;font-size:12px;background:var(--bg-card);padding:2px 6px;border-radius:4px;">GET pay.agentagon.ai/you/weather?city=NYC</code>, a normal API request, no payment attached yet.</p>
                         <span class="flow-tag tag-agent">Agent</span>
                     </div>
                 </div>
                 <div class="flow-step" data-delay="800">
                     <div class="flow-num">3</div>
                     <div>
-                        <h4>Your API returns 402 Payment Required</h4>
-                        <p>Agentagon middleware intercepts the request, responds with pricing and all supported payment protocols (x402, MPP, ACP).</p>
-                        <span class="flow-tag tag-seller">Your API</span>
+                        <h4>Agentagon returns 402 Payment Required</h4>
+                        <p>The proxy intercepts the request and responds with pricing and all supported payment protocols (x402, MPP, ACP).</p>
+                        <span class="flow-tag tag-agentagon">Agentagon</span>
                     </div>
                 </div>
                 <div class="flow-step" data-delay="1200">
@@ -660,7 +664,7 @@ agentagon.init(api_key=<span class="c-string">"ag_live_..."</span>)
                     <div class="flow-num">5</div>
                     <div>
                         <h4>Agentagon verifies payment on-chain</h4>
-                        <p>Payment is verified, logged to the ledger, and the request is forwarded to your actual endpoint handler.</p>
+                        <p>Payment is verified, logged to the ledger, and the request is forwarded to your original API.</p>
                         <span class="flow-tag tag-agentagon">Agentagon</span>
                     </div>
                 </div>
@@ -668,7 +672,7 @@ agentagon.init(api_key=<span class="c-string">"ag_live_..."</span>)
                     <div class="flow-num">6</div>
                     <div>
                         <h4>Your API returns the data</h4>
-                        <p>Your endpoint handler runs normally and returns the response. The agent gets its data.</p>
+                        <p>Your original API handles the request as usual and returns the response. The agent gets its data through the proxy.</p>
                         <span class="flow-tag tag-seller">Your API</span>
                     </div>
                 </div>
