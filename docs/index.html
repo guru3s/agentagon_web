@@ -7,7 +7,7 @@
     <meta name="description" content="The payment middleware for the agentic economy. Add one decorator, and your API accepts payments from any AI agent. No blockchain knowledge required.">
     <meta name="theme-color" content="#111111">
     <meta property="og:title" content="Agentagon | Make Any API Agent-Payable">
-    <meta property="og:description" content="5 lines of code. Full payment stack. Accept payments from any AI agent: x402, MPP, ACP, and more.">
+    <meta property="og:description" content="Zero code changes. Full payment stack. Accept payments from any AI agent: x402, MPP, ACP, and more.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://agentagon.ai">
     <meta name="twitter:card" content="summary">
@@ -512,9 +512,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-eyebrow">Agentagon</div>
-            <h1>Make any API agent&#8209;payable. In&nbsp;minutes.</h1>
+            <h1>Make any API agent&#8209;payable. Zero&nbsp;code&nbsp;changes.</h1>
             <p class="hero-sub">
-                Agentagon is the payment middleware for the agentic economy. Add a decorator to your code, or just give us your API endpoint. We handle payments from any AI agent. x402, MPP, ACP, and more. No blockchain knowledge required.
+                Point us to your API. We handle the rest. Payments from any AI agent, every protocol, full ledger, instant settlement. No blockchain knowledge required. Or use our SDK for inline control.
             </p>
             <div class="hero-actions">
                 <button class="btn-primary" onclick="openModal()">
@@ -574,16 +574,51 @@
             <div class="code-header">
                 <div class="section-label">Two Ways to Integrate</div>
                 <h2 class="section-title">Your API. Your way.</h2>
-                <p class="section-desc">Add a decorator to your code, or just point us to your endpoint. Either way, you're accepting agent payments in minutes.</p>
+                <p class="section-desc">Just point us to your endpoint. Or add our SDK for inline control. Either way, you're accepting agent payments in minutes.</p>
             </div>
 
             <div class="integration-tabs">
-                <button class="integration-tab active" onclick="switchTab('sdk')">SDK: Add to Your Code</button>
-                <button class="integration-tab" onclick="switchTab('proxy')">Proxy: Zero Code Changes</button>
+                <button class="integration-tab active" onclick="switchTab('proxy')">Proxy: Zero Code Changes</button>
+                <button class="integration-tab" onclick="switchTab('sdk')">SDK: Inline Control</button>
+            </div>
+
+            <!-- PROXY TAB -->
+            <div class="integration-panel active" id="tab-proxy">
+                <div class="code-block" style="margin-bottom: 0;">
+                    <div class="code-block-header">
+                        <span class="code-block-title">Your Code Changes</span>
+                        <span class="code-block-badge badge-green">0 lines</span>
+                    </div>
+                    <pre>
+<span class="comment"># Your existing API stays exactly as it is.</span>
+<span class="comment"># No SDK. No decorator. No imports. Nothing.</span>
+<span class="comment">#</span>
+<span class="comment"># Just give Agentagon your endpoint URL and pricing.</span>
+<span class="comment"># We create a paid proxy endpoint that agents call instead.</span>
+<span class="comment"># Payments verified, requests forwarded, revenue tracked.</span>
+</pre>
+                </div>
+                <div class="proxy-steps">
+                    <div class="proxy-step">
+                        <div class="proxy-step-num">1</div>
+                        <h4>Register your endpoint</h4>
+                        <p>Give us your API URL and set your price per call. Dashboard or API.</p>
+                    </div>
+                    <div class="proxy-step">
+                        <div class="proxy-step-num">2</div>
+                        <h4>We create a paid endpoint</h4>
+                        <p>Agents call your Agentagon URL. We verify payments and proxy to your origin.</p>
+                    </div>
+                    <div class="proxy-step">
+                        <div class="proxy-step-num">3</div>
+                        <h4>You get paid</h4>
+                        <p>Same dashboard, same ledger, same settlement. Zero code on your side.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- SDK TAB -->
-            <div class="integration-panel active" id="tab-sdk">
+            <div class="integration-panel" id="tab-sdk">
                 <div class="code-comparison-wrapper">
                     <div class="code-comparison">
                         <div class="code-block">
@@ -646,40 +681,6 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 </div>
             </div>
 
-            <!-- PROXY TAB -->
-            <div class="integration-panel" id="tab-proxy">
-                <div class="code-block" style="margin-bottom: 0;">
-                    <div class="code-block-header">
-                        <span class="code-block-title">Your Code Changes</span>
-                        <span class="code-block-badge badge-green">0 lines</span>
-                    </div>
-                    <pre>
-<span class="comment"># Your existing API stays exactly as it is.</span>
-<span class="comment"># No SDK. No decorator. No imports. Nothing.</span>
-<span class="comment">#</span>
-<span class="comment"># Just give Agentagon your endpoint URL and pricing.</span>
-<span class="comment"># We create a paid proxy endpoint that agents call instead.</span>
-<span class="comment"># Payments verified, requests forwarded, revenue tracked.</span>
-</pre>
-                </div>
-                <div class="proxy-steps">
-                    <div class="proxy-step">
-                        <div class="proxy-step-num">1</div>
-                        <h4>Register your endpoint</h4>
-                        <p>Give us your API URL and set your price per call. Dashboard or API.</p>
-                    </div>
-                    <div class="proxy-step">
-                        <div class="proxy-step-num">2</div>
-                        <h4>We create a paid endpoint</h4>
-                        <p>Agents call your Agentagon URL. We verify payments and proxy to your origin.</p>
-                    </div>
-                    <div class="proxy-step">
-                        <div class="proxy-step-num">3</div>
-                        <h4>You get paid</h4>
-                        <p>Same dashboard, same ledger, same settlement. Zero code on your side.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
