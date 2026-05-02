@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agentagon | Make Any API Agent-Payable</title>
-    <meta name="description" content="The payment middleware for the agentic economy. Add one decorator, and your API accepts payments from any AI agent. No blockchain knowledge required.">
+    <title>Agentagon | Autonomous Agentic Spend Operating System</title>
+    <meta name="description" content="Mission Control for autonomous AI agent spend. Set budgets, enforce policies, route approvals, and audit every dollar your agents spend across every provider and payment rail.">
     <meta name="theme-color" content="#111111">
-    <meta property="og:title" content="Agentagon | Make Any API Agent-Payable">
-    <meta property="og:description" content="Zero code changes. Full payment stack. Accept payments from any AI agent: x402, MPP, ACP, and more.">
+    <meta property="og:title" content="Agentagon | Autonomous Agentic Spend Operating System">
+    <meta property="og:description" content="Mission Control for autonomous AI agent spend. Budgets, policies, approvals, and audit across every provider and rail.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://agentagon.ai">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Agentagon | Make Any API Agent-Payable">
-    <meta name="twitter:description" content="5 lines of code. Full payment stack. Accept payments from any AI agent.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='none' stroke='white' stroke-width='2.5' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23111'/%3E%3Crect x='56' y='56' width='68' height='68' rx='8' fill='none' stroke='white' stroke-width='12' transform='rotate(45 90 90)'/%3E%3C/svg%3E">
+    <meta name="twitter:title" content="Agentagon | Autonomous Agentic Spend Operating System">
+    <meta name="twitter:description" content="Mission Control for autonomous AI agent spend.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231F4937'/%3E%3Cg fill='none' stroke='%23F5F3EE' stroke-width='28' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='256,86 417.7,203.5 355.9,393.5 156.1,393.5 94.3,203.5'/%3E%3Cpolygon points='256,168 339.7,228.8 307.7,327.2 204.3,327.2 172.3,228.8'/%3E%3Cline x1='256' y1='86' x2='256' y2='168'/%3E%3Cline x1='417.7' y1='203.5' x2='339.7' y2='228.8'/%3E%3Cline x1='355.9' y1='393.5' x2='307.7' y2='327.2'/%3E%3Cline x1='156.1' y1='393.5' x2='204.3' y2='327.2'/%3E%3Cline x1='94.3' y1='203.5' x2='172.3' y2='228.8'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231F4937'/%3E%3Cg fill='none' stroke='%23F5F3EE' stroke-width='24' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='256,86 417.7,203.5 355.9,393.5 156.1,393.5 94.3,203.5'/%3E%3Cpolygon points='256,168 339.7,228.8 307.7,327.2 204.3,327.2 172.3,228.8'/%3E%3Cline x1='256' y1='86' x2='256' y2='168'/%3E%3Cline x1='417.7' y1='203.5' x2='339.7' y2='228.8'/%3E%3Cline x1='355.9' y1='393.5' x2='307.7' y2='327.2'/%3E%3Cline x1='156.1' y1='393.5' x2='204.3' y2='327.2'/%3E%3Cline x1='94.3' y1='203.5' x2='172.3' y2='228.8'/%3E%3C/g%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
@@ -39,63 +39,65 @@
          * ──────────────────────────────────────────────────────────── */
         :root {
             color-scheme: light dark;
-            /* Surfaces */
-            --bg:             #F5F3EE;  /* paper-app -- page background */
-            --bg-warm:        #FAF8F2;  /* paper-recess -- warmer band */
-            --bg-card:        #FFFEFA;  /* paper-base -- card surface */
-            --bg-card-hover:  #F0EDE2;  /* slight lift on hover */
-            --bg-dark:        #1F4937;  /* forest -- the only "dark" anchor */
-            --bg-dark-card:   #16382A;  /* deeper forest, used inside cards */
-            --border:         #E8E4DA;  /* paper-line -- hairline only */
-            --border-hover:   #1F4937;  /* forest border on hover */
-            /* Text hierarchy */
-            --text-primary:           #1A1B1A;  /* ink */
-            --text-secondary:         #4A4940;  /* ink-mid */
-            --text-muted:             #87857A;  /* ink-soft */
-            --text-on-dark:           #F5F3EE;  /* cream on forest */
-            --text-on-dark-secondary: #A6BDB0;  /* muted sage on forest */
-            /* Forest = "green" semantically (verified, on-track) */
-            --green:        #1F4937;
-            --green-bg:     rgba(31, 73, 55, 0.06);
-            --green-border: rgba(31, 73, 55, 0.20);
-            /* Ember = "blue" semantically (active, highlighted) -- replaces stock blue */
-            --blue:         #E07856;
-            --blue-bg:      rgba(224, 120, 86, 0.10);
-            /* Purple kept for chain identity (matches dashboard solana) */
-            --purple:       #6D28D9;
+            /* Surfaces: paper-app stays sage cream (matches dashboard) */
+            --bg:             #F5F3EE;
+            --bg-warm:        #FAF8F2;
+            --bg-card:        #FFFEFA;
+            --bg-card-hover:  #F0EDE2;
+            /* Forest: dark anchor used only for the primary CTA button (matches dashboard btn-primary) */
+            --bg-dark:        #1F4937;
+            --bg-dark-card:   #16382A;
+            --border:         #E8E4DA;
+            --border-hover:   #2563EB;
+            /* Text: ink scale (matches dashboard) */
+            --text-primary:           #1A1B1A;
+            --text-secondary:         #4A4940;
+            --text-muted:             #87857A;
+            --text-on-dark:           #F5F3EE;
+            --text-on-dark-secondary: #A6BDB0;
+            /* Emerald: success / healthy / allow (dashboard emerald-700) */
+            --green:        #047857;
+            --green-bg:     rgba(4, 120, 87, 0.08);
+            --green-border: rgba(4, 120, 87, 0.20);
+            /* Blue: primary accent (dashboard accent-600) */
+            --blue:         #2563EB;
+            --blue-bg:      rgba(37, 99, 235, 0.10);
+            /* Violet, rose, amber kept for status pills (dashboard pill palette) */
+            --purple:       #7C3AED;
             --purple-bg:    #F5F3FF;
-            /* Red = error (kept) */
-            --red:          #C3382C;
-            --red-bg:       #FEF2F2;
+            --red:          #BE123C;
+            --red-bg:       rgba(190, 18, 60, 0.08);
+            --amber:        #B45309;
+            --amber-bg:     rgba(180, 83, 9, 0.08);
         }
 
         html.dark {
-            /* Surfaces -- deep forest-tinted near-black */
             --bg:             #0E1311;
             --bg-warm:        #151A18;
             --bg-card:        #1A201E;
             --bg-card-hover:  #202723;
-            --bg-dark:        #1F4937;     /* anchor stays the same forest */
+            --bg-dark:        #1F4937;
             --bg-dark-card:   #16382A;
             --border:         #2A302E;
-            --border-hover:   #6FA887;
-            /* Text -- warm off-whites */
+            --border-hover:   #60A5FA;
             --text-primary:           #E8E5DD;
             --text-secondary:         #B5B2A4;
             --text-muted:             #87857A;
             --text-on-dark:           #F5F3EE;
             --text-on-dark-secondary: #A6BDB0;
-            /* Forest accent -- lighter sage for contrast on dark surfaces */
-            --green:        #6FA887;
-            --green-bg:     rgba(111, 168, 135, 0.12);
-            --green-border: rgba(111, 168, 135, 0.25);
-            /* Ember slightly punchier in dark */
-            --blue:         #E88A6E;
-            --blue-bg:      rgba(232, 138, 110, 0.12);
+            /* Emerald: success in dark (emerald-400) */
+            --green:        #34D399;
+            --green-bg:     rgba(52, 211, 153, 0.12);
+            --green-border: rgba(52, 211, 153, 0.25);
+            /* Blue: primary accent in dark (accent-400) */
+            --blue:         #60A5FA;
+            --blue-bg:      rgba(96, 165, 250, 0.12);
             --purple:       #A78BFA;
             --purple-bg:    rgba(167, 139, 250, 0.10);
-            --red:          #F87171;
-            --red-bg:       rgba(248, 113, 113, 0.10);
+            --red:          #FB7185;
+            --red-bg:       rgba(251, 113, 133, 0.12);
+            --amber:        #F59E0B;
+            --amber-bg:     rgba(245, 158, 11, 0.12);
         }
 
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -127,14 +129,10 @@
         nav.scrolled { border-bottom-color: var(--border); }
         nav .container { display: flex; justify-content: space-between; align-items: center; }
 
-        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: -0.03em; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: -0.03em; color: var(--text-primary); }
         .logo-mark {
-            width: 28px; height: 28px; background: var(--bg-dark); border-radius: 7px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .logo-mark::after {
-            content: ''; width: 10px; height: 10px;
-            border: 2px solid white; border-radius: 2px; transform: rotate(45deg);
+            width: 28px; height: 28px; flex-shrink: 0;
+            color: var(--text-primary);
         }
 
         .nav-links { display: flex; align-items: center; gap: 28px; }
@@ -161,7 +159,7 @@
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); cursor: pointer; padding: 8px; }
 
         /* ── HERO ── */
-        .hero { padding: 150px 0 100px; border-bottom: 1px solid var(--border); }
+        .hero { padding: 150px 0 64px; }
 
         .hero-eyebrow {
             font-size: 12px; font-weight: 600; text-transform: uppercase;
@@ -170,15 +168,15 @@
 
         .hero h1 {
             font-family: 'Fraunces', Georgia, serif;
-            font-size: clamp(42px, 6vw, 72px); font-weight: 500;
+            font-size: clamp(42px, 6vw, 68px); font-weight: 500;
             line-height: 1.05; letter-spacing: -0.025em;
-            max-width: 760px; margin-bottom: 24px;
+            max-width: 880px; margin-bottom: 24px;
             color: var(--text-primary);
         }
 
         .hero-sub {
             font-size: clamp(16px, 1.8vw, 19px); color: var(--text-secondary);
-            max-width: 600px; line-height: 1.65; margin-bottom: 40px;
+            max-width: 640px; line-height: 1.65; margin-bottom: 40px;
         }
 
         .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -199,6 +197,92 @@
         }
         .btn-secondary:hover { border-color: var(--border-hover); background: var(--bg-warm); }
 
+        /* ── FAUX BENTO (Mission Control mock) ── */
+        .bento-section { padding: 24px 0 96px; border-bottom: 1px solid var(--border); }
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px;
+            background: var(--bg-warm);
+            border: 1px solid var(--border); border-radius: 20px;
+            padding: 16px;
+        }
+        .bento-cell {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex; flex-direction: column; gap: 8px;
+            min-height: 110px;
+        }
+        .bento-cell-label {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.06em; color: var(--text-muted);
+        }
+        .bento-kpi-value {
+            font-size: 26px; font-weight: 700; letter-spacing: -0.02em;
+            color: var(--text-primary); line-height: 1.1;
+            font-feature-settings: "tnum";
+        }
+        .bento-kpi-foot { font-size: 11px; color: var(--text-muted); }
+        .bento-pill {
+            align-self: flex-start;
+            display: inline-flex; align-items: center;
+            padding: 2px 8px; border-radius: 999px;
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .pill-green { background: var(--green-bg); color: var(--green); }
+        .pill-blue  { background: var(--blue-bg);  color: var(--blue); }
+        .pill-amber { background: var(--amber-bg); color: var(--amber); }
+        .pill-red   { background: var(--red-bg);   color: var(--red); }
+
+        .bento-bars {
+            display: flex; align-items: flex-end; gap: 3px;
+            height: 22px; margin-top: 4px;
+        }
+        .bento-bars span {
+            flex: 1; background: var(--blue); opacity: 0.22;
+            border-radius: 2px;
+        }
+        .bento-bars span:nth-child(7) { opacity: 0.6; }
+
+        .bento-trend {
+            grid-column: span 8;
+            min-height: 180px;
+        }
+        .bento-trend-head {
+            display: flex; align-items: baseline; justify-content: space-between;
+        }
+        .bento-trend-title { font-size: 13px; font-weight: 600; }
+        .bento-trend-total {
+            font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+            font-feature-settings: "tnum";
+        }
+        .bento-trend-total span { font-size: 11px; font-weight: 400; color: var(--text-muted); }
+        .bento-trend-svg { width: 100%; height: 110px; display: block; margin-top: 6px; }
+
+        .bento-events {
+            grid-column: span 4;
+            min-height: 180px;
+        }
+        .bento-events-head {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .bento-events-title { font-size: 13px; font-weight: 600; }
+        .bento-events-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+        .bento-event {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 10px;
+            background: var(--bg-warm);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        .bento-event-text { flex: 1; min-width: 0; color: var(--text-secondary); }
+        .bento-event-text strong { color: var(--text-primary); font-weight: 600; }
+
+        .kpi-2 { grid-column: span 2; }
+        .kpi-3 { grid-column: span 3; }
+
         /* ── SECTIONS ── */
         section { padding: 96px 0; }
         .section-label {
@@ -210,7 +294,7 @@
             font-size: clamp(30px, 4vw, 44px); font-weight: 500;
             letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 14px;
         }
-        .section-desc { font-size: 17px; color: var(--text-secondary); max-width: 600px; line-height: 1.7; }
+        .section-desc { font-size: 17px; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
 
         /* ── PROBLEM ── */
         .problem-section { border-top: 1px solid var(--border); background: var(--bg-warm); }
@@ -228,15 +312,12 @@
             font-size: 14px; font-weight: 700; text-transform: uppercase;
             letter-spacing: 0.04em; margin-bottom: 12px;
         }
-        .problem-card:nth-child(1) h3 { color: #16a34a; }
+        .problem-card:nth-child(1) h3 { color: var(--green); }
         .problem-card:nth-child(2) h3 { color: var(--blue); }
         .problem-card:nth-child(3) h3 { color: var(--red); }
         .problem-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; }
 
-        /* Market stats */
-        .problem-stats {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-        }
+        .problem-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .problem-stat {
             text-align: center; padding: 28px 16px;
             background: var(--bg); border-radius: 16px;
@@ -247,12 +328,11 @@
             color: var(--text-primary); line-height: 1.1;
         }
         .problem-stat .label { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
-        .problem-stat .source { font-size: 11px; color: #aaa; margin-top: 4px; }
+        .problem-stat .source { font-size: 11px; color: var(--text-muted); margin-top: 4px; opacity: 0.7; }
 
-        /* ── CODE COMPARISON ── */
+        /* ── CODE / INTEGRATION ── */
         .code-section { border-top: 1px solid var(--border); background: var(--bg); }
-        .code-header { margin-bottom: 48px; }
-        .code-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+        .code-header { margin-bottom: 40px; }
         .code-block {
             background: #1a1a2e; border-radius: 16px; overflow: hidden;
             border: 1px solid #2a2a3e;
@@ -270,8 +350,8 @@
             font-size: 11px; font-weight: 700; padding: 3px 10px;
             border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em;
         }
-        .badge-red { background: rgba(239,68,68,0.15); color: #ef4444; }
         .badge-green { background: rgba(34,197,94,0.15); color: #22c55e; }
+        .badge-blue  { background: rgba(96,165,250,0.15); color: #60a5fa; }
         .code-block pre {
             padding: 20px; font-size: 13px; line-height: 1.7;
             font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
@@ -281,23 +361,7 @@
         .code-block pre .keyword { color: #c792ea; }
         .code-block pre .string { color: #c3e88d; }
         .code-block pre .function { color: #82aaff; }
-        .code-block pre .decorator { color: #f78c6c; }
         .code-block pre .number { color: #f78c6c; }
-        .code-block pre .dim { color: #4a4a6a; }
-        .code-arrow {
-            display: flex; align-items: center; justify-content: center;
-            position: absolute; left: 50%; top: 50%;
-            transform: translate(-50%, -50%);
-            width: 48px; height: 48px;
-            background: var(--bg-dark); border-radius: 50%;
-            color: white; font-size: 20px; font-weight: 700;
-            z-index: 1;
-        }
-        .code-comparison-wrapper { position: relative; }
-        .code-line-count {
-            text-align: center; padding: 12px;
-            font-size: 14px; font-weight: 600; color: var(--text-muted);
-        }
 
         /* ── SOLUTION ── */
         .solution-section { border-top: 1px solid var(--border); background: var(--bg-warm); }
@@ -311,26 +375,63 @@
         .solution-card:nth-child(2) { border-top-color: var(--blue); }
         .solution-card:nth-child(3) { border-top-color: var(--purple); }
         .solution-card:nth-child(4) { border-top-color: var(--red); }
-        .solution-card:nth-child(5) { border-top-color: #f97316; }
+        .solution-card:nth-child(5) { border-top-color: var(--amber); }
         .solution-card:nth-child(6) { border-top-color: #0d9488; }
         .solution-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
         .solution-label {
             font-size: 12px; font-weight: 600; text-transform: uppercase;
             letter-spacing: 0.06em; margin-bottom: 8px;
         }
-        .solution-card:nth-child(1) .solution-label { color: #16a34a; }
+        .solution-card:nth-child(1) .solution-label { color: var(--green); }
         .solution-card:nth-child(2) .solution-label { color: var(--blue); }
         .solution-card:nth-child(3) .solution-label { color: var(--purple); }
         .solution-card:nth-child(4) .solution-label { color: var(--red); }
-        .solution-card:nth-child(5) .solution-label { color: #f97316; }
+        .solution-card:nth-child(5) .solution-label { color: var(--amber); }
         .solution-card:nth-child(6) .solution-label { color: #0d9488; }
         .solution-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.02em; }
         .solution-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
 
+        /* ── HOW IT WORKS ── */
+        .how-section { border-top: 1px solid var(--border); background: var(--bg); }
+        .how-header { margin-bottom: 40px; }
+        .how-steps { display: flex; flex-direction: column; }
+        .how-step {
+            display: grid; grid-template-columns: 48px 1fr; gap: 20px;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .how-step:last-child { border-bottom: none; }
+        .how-step-num {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: var(--bg-warm); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 700; color: var(--text-primary);
+        }
+        .how-step h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; }
+        .how-step p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+        .how-step code {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: var(--bg-warm); padding: 2px 8px; border-radius: 6px;
+            font-size: 13px; border: 1px solid var(--border);
+        }
+
+        /* ── BUILT FOR ── */
+        .callout-section { border-top: 1px solid var(--border); background: var(--bg-warm); }
+        .callout-header { margin-bottom: 40px; }
+        .callout-items { display: flex; flex-direction: column; }
+        .callout-item {
+            display: grid; grid-template-columns: 28px 1fr; gap: 14px;
+            padding: 18px 0; border-bottom: 1px solid var(--border); align-items: start;
+        }
+        .callout-item:last-child { border-bottom: none; }
+        .callout-icon { font-size: 18px; padding-top: 1px; }
+        .callout-item p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; }
+        .callout-item strong { color: var(--text-primary); }
+
         /* ── MARKET ── */
         .market-section { border-top: 1px solid var(--border); background: var(--bg); }
         .market-header { margin-bottom: 56px; }
-        .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+        .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .market-card {
             background: var(--bg-warm); padding: 32px 24px; border-radius: 16px;
             border: 1px solid var(--border); border-left: 3px solid var(--green);
@@ -343,57 +444,18 @@
             font-size: 14px; font-weight: 700; text-transform: uppercase;
             letter-spacing: 0.04em; margin-bottom: 12px;
         }
-        .market-card:nth-child(1) h3 { color: #16a34a; }
+        .market-card:nth-child(1) h3 { color: var(--green); }
         .market-card:nth-child(2) h3 { color: var(--blue); }
         .market-card:nth-child(3) h3 { color: var(--purple); }
         .market-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
         .market-card .stat-highlight { font-size: 28px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 8px; }
-        .market-card .punchline { font-size: 15px; font-weight: 600; color: var(--text-primary); font-style: italic; }
-
-        /* ── HOW IT WORKS ── */
-        .how-section { border-top: 1px solid var(--border); background: var(--bg-warm); }
-        .how-header { margin-bottom: 56px; }
-        .how-steps { display: flex; flex-direction: column; gap: 0; }
-        .how-step {
-            display: grid; grid-template-columns: 48px 1fr; gap: 20px;
-            padding: 28px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .how-step:last-child { border-bottom: none; }
-        .how-step-num {
-            width: 48px; height: 48px; border-radius: 12px;
-            background: var(--bg); border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px; font-weight: 700; color: var(--text-primary);
-        }
-        .how-step h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; }
-        .how-step p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-        .how-step code {
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            background: var(--bg); padding: 2px 8px; border-radius: 6px;
-            font-size: 13px; border: 1px solid var(--border);
-        }
-
-        /* ── CALLOUT ── */
-        .callout-section { border-top: 1px solid var(--border); background: var(--bg); }
-        .callout-header { margin-bottom: 40px; }
-        .callout-items { display: flex; flex-direction: column; gap: 0; }
-        .callout-item {
-            display: grid; grid-template-columns: 28px 1fr; gap: 14px;
-            padding: 16px 0; border-bottom: 1px solid var(--border); align-items: start;
-        }
-        .callout-item:last-child { border-bottom: none; }
-        .callout-icon { font-size: 18px; padding-top: 1px; }
-        .callout-item p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; }
-        .callout-item strong { color: var(--text-primary); }
+        .market-card .punchline { font-size: 13px; color: var(--text-muted); }
 
         /* ── FAQ ── */
         .faq-section { border-top: 1px solid var(--border); background: var(--bg-warm); }
-        .faq-header { margin-bottom: 40px; }
+        .faq-header { margin-bottom: 32px; }
         .faq-list { max-width: 760px; }
-        .faq-list details {
-            border-bottom: 1px solid var(--border); overflow: hidden;
-        }
+        .faq-list details { border-bottom: 1px solid var(--border); overflow: hidden; }
         .faq-list details:last-child { border-bottom: none; }
         .faq-list summary {
             padding: 20px 0; font-size: 16px; font-weight: 600;
@@ -408,23 +470,15 @@
             flex-shrink: 0; margin-left: 16px;
         }
         .faq-list details[open] summary::after { content: '\2212'; }
-        .faq-list details[open] summary { color: var(--text-primary); }
         .faq-list .faq-answer {
             padding: 0 0 20px; font-size: 15px;
-            color: var(--text-secondary); line-height: 1.7; max-width: 640px;
+            color: var(--text-secondary); line-height: 1.7; max-width: 680px;
         }
-
-        /* ── PRICING HINT ── */
-        .cta-pricing {
-            font-size: 13px; color: var(--text-muted); margin-top: 14px;
-            display: flex; align-items: center; justify-content: center; gap: 6px;
-        }
-        .cta-pricing .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
 
         /* ── CTA ── */
         .cta-section { padding: 100px 0; border-top: 1px solid var(--border); background: var(--bg); text-align: center; }
-        .cta-section .section-title { margin: 0 auto 16px; }
-        .cta-section p { font-size: 17px; color: var(--text-secondary); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
+        .cta-section .section-title { margin: 0 auto 16px; max-width: 720px; }
+        .cta-section p { font-size: 17px; color: var(--text-secondary); margin-bottom: 36px; max-width: 540px; margin-left: auto; margin-right: auto; }
 
         /* ── FOOTER ── */
         footer { border-top: 1px solid var(--border); padding: 40px 0; background: var(--bg-warm); }
@@ -444,28 +498,26 @@
             opacity: 0; transition: opacity 0.25s;
         }
         .modal-overlay.open { display: flex; opacity: 1; }
-
         .modal {
-            background: white; border-radius: 20px; padding: 40px;
-            max-width: 480px; width: 90%; position: relative;
+            background: var(--bg-card); border-radius: 20px; padding: 40px;
+            max-width: 520px; width: 90%; position: relative;
+            max-height: 92vh; overflow-y: auto;
             box-shadow: 0 24px 80px rgba(0,0,0,0.15);
             transform: translateY(10px); transition: transform 0.25s;
         }
         .modal-overlay.open .modal { transform: translateY(0); }
-
         .modal-close {
             position: absolute; top: 16px; right: 16px;
-            background: var(--bg-card); border: none; width: 32px; height: 32px;
+            background: var(--bg-warm); border: none; width: 32px; height: 32px;
             border-radius: 8px; cursor: pointer; display: flex;
             align-items: center; justify-content: center; color: var(--text-secondary);
             transition: all 0.2s; font-size: 18px;
         }
         .modal-close:hover { background: var(--bg-card-hover); color: var(--text-primary); }
-
         .modal h3 { font-size: 22px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.02em; }
-        .modal .modal-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 28px; line-height: 1.5; }
+        .modal .modal-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.5; }
 
-        .form-group { margin-bottom: 18px; }
+        .form-group { margin-bottom: 16px; }
         .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text-primary); }
         .form-group input, .form-group select, .form-group textarea {
             width: 100%; padding: 10px 14px; border: 1px solid var(--border);
@@ -476,7 +528,7 @@
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none; border-color: var(--text-primary);
         }
-        .form-group textarea { resize: vertical; min-height: 80px; }
+        .form-group textarea { resize: vertical; min-height: 70px; }
 
         .form-submit {
             width: 100%; padding: 12px; background: var(--bg-dark); color: white;
@@ -496,41 +548,61 @@
         .form-success h4 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
         .form-success p { font-size: 14px; color: var(--text-secondary); }
 
-        /* ── INTEGRATION TABS ── */
-        .integration-tabs {
-            display: flex; gap: 8px; margin-bottom: 32px;
-        }
-        .integration-tab {
-            padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
-            cursor: pointer; border: 1px solid var(--border); background: var(--bg-warm);
-            color: var(--text-secondary); transition: all 0.2s;
-        }
-        .integration-tab:hover { border-color: var(--border-hover); color: var(--text-primary); }
-        .integration-tab.active {
-            background: var(--bg-dark); color: white; border-color: var(--bg-dark);
-        }
-        .integration-panel { display: none; }
-        .integration-panel.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-        .proxy-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
-        .proxy-step {
-            background: var(--bg-warm); padding: 20px; border-radius: 14px;
-            border: 1px solid var(--border); text-align: center;
-        }
-        .proxy-step-num {
-            width: 32px; height: 32px; border-radius: 8px; background: var(--bg-dark);
-            color: white; display: inline-flex; align-items: center; justify-content: center;
-            font-size: 14px; font-weight: 700; margin-bottom: 10px;
-        }
-        .proxy-step h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-        .proxy-step p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-
         /* ── FADE IN ── */
         .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+        /* ── HERO KICKER ── */
+        .hero-kicker {
+            margin-top: 36px;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 19px; font-weight: 500;
+            font-style: italic; letter-spacing: -0.01em;
+            color: var(--text-secondary);
+            max-width: 540px; line-height: 1.4;
+        }
+
+        /* ── CONVERGENCE ── */
+        .convergence-section { border-top: 1px solid var(--border); background: var(--bg); }
+        .convergence-header { margin-bottom: 48px; }
+        .convergence-grid { display: flex; flex-direction: column; gap: 12px; }
+        .convergence-row {
+            display: grid; grid-template-columns: 160px 1fr; gap: 24px;
+            padding: 28px 28px 28px 24px;
+            background: var(--bg-warm);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            align-items: start;
+        }
+        .convergence-tag {
+            display: inline-flex; align-items: center;
+            padding: 4px 12px; border-radius: 999px;
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.04em;
+            background: var(--green-bg); color: var(--green);
+            width: fit-content;
+        }
+        .convergence-row:nth-child(2) .convergence-tag { background: var(--blue-bg); color: var(--blue); }
+        .convergence-row:nth-child(3) .convergence-tag { background: var(--amber-bg); color: var(--amber); }
+        .convergence-row h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; }
+        .convergence-row p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; }
+
+        /* ── CTA META ── */
+        .cta-meta {
+            font-size: 13px; color: var(--text-muted);
+            margin-top: 32px; max-width: 580px;
+            margin-left: auto; margin-right: auto;
+            line-height: 1.55;
+        }
+
         /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: repeat(6, 1fr); }
+            .kpi-2 { grid-column: span 3; }
+            .kpi-3 { grid-column: span 3; }
+            .bento-trend { grid-column: span 6; }
+            .bento-events { grid-column: span 6; }
+        }
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
@@ -539,16 +611,16 @@
                 top: 100%; left: 0; right: 0; background: var(--bg);
                 border-bottom: 1px solid var(--border); padding: 16px 24px; gap: 16px;
             }
-            .hero { padding: 130px 0 80px; }
+            .hero { padding: 130px 0 48px; }
             .problem-grid, .market-grid { grid-template-columns: 1fr; }
             .problem-stats { grid-template-columns: 1fr; }
-            .solution-grid { grid-template-columns: 1fr !important; }
-            .code-comparison { grid-template-columns: 1fr; }
-            .proxy-steps { grid-template-columns: 1fr; }
-            .integration-tabs { flex-wrap: wrap; }
-            .code-arrow { display: none; }
+            .solution-grid { grid-template-columns: 1fr; }
             .footer-content { flex-direction: column; gap: 20px; text-align: center; }
             .footer-left { flex-direction: column; gap: 6px; }
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-2, .kpi-3 { grid-column: span 1; }
+            .bento-trend, .bento-events { grid-column: span 2; }
+            .convergence-row { grid-template-columns: 1fr; gap: 12px; }
         }
     </style>
 </head>
@@ -558,15 +630,26 @@
     <nav id="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <div class="logo-mark"></div>
+                <svg class="logo-mark" viewBox="0 0 512 512" aria-hidden="true">
+                    <g fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="256,86 417.7,203.5 355.9,393.5 156.1,393.5 94.3,203.5"/>
+                        <polygon points="256,168 339.7,228.8 307.7,327.2 204.3,327.2 172.3,228.8"/>
+                        <line x1="256" y1="86" x2="256" y2="168"/>
+                        <line x1="417.7" y1="203.5" x2="339.7" y2="228.8"/>
+                        <line x1="355.9" y1="393.5" x2="307.7" y2="327.2"/>
+                        <line x1="156.1" y1="393.5" x2="204.3" y2="327.2"/>
+                        <line x1="94.3" y1="203.5" x2="172.3" y2="228.8"/>
+                    </g>
+                </svg>
                 Agentagon
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="#problem">Problem</a>
-                <a href="#solution">Solution</a>
-                <a href="#market">Market</a>
+                <a href="#solution">Platform</a>
+                <a href="#how">How it works</a>
+                <a href="#faq">FAQ</a>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" onclick="toggleTheme()">
-                    <span id="themeIcon">☾</span>
+                    <span id="themeIcon">&#9790;</span>
                 </button>
                 <button class="nav-cta" onclick="openModal()">Request Access <span>&rarr;</span></button>
             </div>
@@ -580,16 +663,103 @@
     <section class="hero">
         <div class="container">
             <div class="hero-eyebrow">Agentagon</div>
-            <h1>Make any API agent&#8209;payable. Zero&nbsp;code&nbsp;changes.</h1>
+            <h1>The autonomous agentic spend operating system.</h1>
             <p class="hero-sub">
-                Point us to your API. We handle the rest. Payments from any AI agent, every protocol, full ledger, instant settlement. No blockchain knowledge required. Or use our SDK for inline control.
+                Set budgets, enforce policies, route approvals, and audit every dollar your AI agents spend. Across every provider, every payment rail, and every team.
             </p>
             <div class="hero-actions">
                 <button class="btn-primary" onclick="openModal()">
                     Request Early Access
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
-                <a href="#problem" class="btn-secondary">Learn More</a>
+                <a href="#mission-control" class="btn-secondary">See Mission Control</a>
+            </div>
+            <p class="hero-kicker">Protocols move money. Agentagon governs money.</p>
+        </div>
+    </section>
+
+    <!-- FAUX BENTO MOCKUP -->
+    <section class="bento-section" id="mission-control">
+        <div class="container">
+            <div class="bento-grid" role="img" aria-label="Mission Control mockup with KPIs, spend trend, and recent policy events">
+
+                <div class="bento-cell kpi-2">
+                    <span class="bento-cell-label">Spend today</span>
+                    <span class="bento-kpi-value">$4,812</span>
+                    <span class="bento-kpi-foot">across all agents</span>
+                    <span class="bento-pill pill-blue">Live</span>
+                </div>
+
+                <div class="bento-cell kpi-2">
+                    <span class="bento-cell-label">Policy adherence</span>
+                    <span class="bento-kpi-value">99.4%</span>
+                    <span class="bento-kpi-foot">team, employee, agent</span>
+                    <span class="bento-pill pill-green">Healthy</span>
+                </div>
+
+                <div class="bento-cell kpi-3">
+                    <span class="bento-cell-label">Active agents</span>
+                    <span class="bento-kpi-value">214</span>
+                    <span class="bento-kpi-foot">connected to your workspace</span>
+                    <div class="bento-bars" aria-hidden="true">
+                        <span style="height:30%"></span><span style="height:45%"></span><span style="height:55%"></span>
+                        <span style="height:50%"></span><span style="height:70%"></span><span style="height:80%"></span>
+                        <span style="height:88%"></span>
+                    </div>
+                </div>
+
+                <div class="bento-cell kpi-3">
+                    <span class="bento-cell-label">Approvals pending</span>
+                    <span class="bento-kpi-value">7</span>
+                    <span class="bento-kpi-foot">human review queue</span>
+                    <span class="bento-pill pill-amber">Attention</span>
+                </div>
+
+                <div class="bento-cell kpi-2">
+                    <span class="bento-cell-label">Blocked events</span>
+                    <span class="bento-kpi-value">31</span>
+                    <span class="bento-kpi-foot">policy prevented spend</span>
+                    <span class="bento-pill pill-red">Protected</span>
+                </div>
+
+                <div class="bento-cell bento-trend">
+                    <div class="bento-trend-head">
+                        <span class="bento-trend-title">Spend velocity, last 30 days</span>
+                        <span class="bento-trend-total">$128,440 <span>total</span></span>
+                    </div>
+                    <svg class="bento-trend-svg" viewBox="0 0 600 110" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="trendFill" x1="0" x2="0" y1="0" y2="1">
+                                <stop offset="0%" stop-color="var(--blue)" stop-opacity="0.32"/>
+                                <stop offset="100%" stop-color="var(--blue)" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M0,80 L20,72 L40,76 L60,68 L80,62 L100,66 L120,55 L140,58 L160,48 L180,52 L200,42 L220,46 L240,38 L260,40 L280,32 L300,36 L320,28 L340,30 L360,22 L380,26 L400,20 L420,24 L440,18 L460,14 L480,18 L500,12 L520,16 L540,10 L560,14 L580,8 L600,12 L600,110 L0,110 Z" fill="url(#trendFill)"/>
+                        <path d="M0,80 L20,72 L40,76 L60,68 L80,62 L100,66 L120,55 L140,58 L160,48 L180,52 L200,42 L220,46 L240,38 L260,40 L280,32 L300,36 L320,28 L340,30 L360,22 L380,26 L400,20 L420,24 L440,18 L460,14 L480,18 L500,12 L520,16 L540,10 L560,14 L580,8 L600,12" fill="none" stroke="var(--blue)" stroke-width="2"/>
+                    </svg>
+                </div>
+
+                <div class="bento-cell bento-events">
+                    <div class="bento-events-head">
+                        <span class="bento-events-title">Recent policy events</span>
+                        <span class="bento-pill pill-green">Audited</span>
+                    </div>
+                    <div class="bento-events-list">
+                        <div class="bento-event">
+                            <span class="bento-pill pill-green">Allow</span>
+                            <span class="bento-event-text"><strong>research-agent-3</strong> &middot; openai &middot; $0.18</span>
+                        </div>
+                        <div class="bento-event">
+                            <span class="bento-pill pill-amber">Approval</span>
+                            <span class="bento-event-text"><strong>ops-agent-1</strong> &middot; stripe &middot; $142.00</span>
+                        </div>
+                        <div class="bento-event">
+                            <span class="bento-pill pill-red">Deny</span>
+                            <span class="bento-event-text"><strong>sales-agent-7</strong> &middot; anthropic &middot; over cap</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -598,157 +768,105 @@
     <section class="problem-section fade-in" id="problem">
         <div class="container">
             <div class="problem-header">
-                <div class="section-label">The Problem</div>
-                <h2 class="section-title">The agentic economy is here.<br>Sellers aren't ready.</h2>
-                <p class="section-desc">AI agents want to pay for your API. But accepting their payments requires crypto wallets, on-chain verification, and protocol-specific code. Most sellers just don't bother.</p>
+                <div class="section-label">The gap</div>
+                <h2 class="section-title">Protocols solved how agents pay.<br>Nobody solved who decides.</h2>
+                <p class="section-desc">Payment rails like x402, MPP, and Stripe move money for agents just fine. None of them tell you who can spend, with what budget, on which providers, or with what audit trail. As every API call becomes a paid call, that gap shows up on the bill.</p>
             </div>
             <div class="problem-grid">
                 <div class="problem-card">
-                    <h3>Protocol Chaos</h3>
-                    <p>x402, MPP, ACP, AP2: four competing payment protocols and counting. Supporting even one requires crypto wallet setup, on-chain verification, and settlement logic. Most API sellers just don't bother.</p>
+                    <h3>Spend you can't see</h3>
+                    <p>Your agents are calling OpenAI, Anthropic, Stripe, x402 endpoints, vector DBs, and dozens more. Spend is scattered across vendor dashboards, on-chain transactions, and monthly invoices. You learn the bill at month-end, not in the moment.</p>
                 </div>
                 <div class="problem-card">
-                    <h3>Infrastructure Tax</h3>
-                    <p>2-3 months of engineering to build billing infrastructure: API keys, payment verification, invoicing, dispute handling. That's thousands of lines of code that have nothing to do with your core product.</p>
+                    <h3>Policies you can't enforce</h3>
+                    <p>Any agent can call any provider for any amount. No team budgets, no employee delegation, no provider allowlists, no approval thresholds. One runaway prompt and you're explaining a five-figure invoice that nobody approved.</p>
                 </div>
                 <div class="problem-card">
-                    <h3>Invisible Revenue</h3>
-                    <p>AI agents are already calling your APIs. But without agent-native payment infrastructure, you can't charge them. Every unmonetized agent call is revenue walking out the door.</p>
+                    <h3>Audit you can't produce</h3>
+                    <p>Finance asks "who spent this?" and you have an account ID. Compliance asks for a control matrix and you have a hunch. Reconciling Stripe, x402, MPP, and ERP every quarter is a manual, error-prone fire drill.</p>
                 </div>
             </div>
             <div class="problem-stats">
                 <div class="problem-stat">
-                    <div class="number">$183B</div>
-                    <div class="label">AI agent market by 2033</div>
-                    <div class="source">Grand View Research</div>
+                    <div class="number">40%</div>
+                    <div class="label">of enterprise apps will run AI agents by 2026</div>
+                    <div class="source">Gartner, 2025</div>
                 </div>
                 <div class="problem-stat">
-                    <div class="number">150M+</div>
-                    <div class="label">x402 transactions since launch</div>
-                    <div class="source">Coinbase</div>
+                    <div class="number">$15T</div>
+                    <div class="label">B2B spend intermediated by agents by 2028</div>
+                    <div class="source">Gartner, 2025</div>
                 </div>
                 <div class="problem-stat">
-                    <div class="number">2-3 mo</div>
-                    <div class="label">Engineering time to build billing</div>
-                    <div class="source">Industry average</div>
+                    <div class="number">1 in 4</div>
+                    <div class="label">developers already build for AI agents</div>
+                    <div class="source">Postman State of API 2025</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- INTEGRATION OPTIONS -->
-    <section class="code-section fade-in" id="code">
+    <!-- THE CONVERGENCE -->
+    <section class="convergence-section fade-in" id="convergence">
+        <div class="container">
+            <div class="convergence-header">
+                <div class="section-label">Why now</div>
+                <h2 class="section-title">Every dollar of AI spend is becoming agentic spend.</h2>
+                <p class="section-desc">From the LLM call to the SaaS API to the x402 endpoint, the same agents are spending across every layer. The boundaries are dissolving fast. One control plane has to govern all of it.</p>
+            </div>
+            <div class="convergence-grid">
+                <div class="convergence-row">
+                    <span class="convergence-tag">Today</span>
+                    <div>
+                        <h3>LLM tokens</h3>
+                        <p>Most enterprise AI spend is still OpenAI and Anthropic invoices. Easy to track at the org level, hard to attribute by team, harder to cap before the bill arrives. One enterprise we work with spends $2M+ a year here alone.</p>
+                    </div>
+                </div>
+                <div class="convergence-row">
+                    <span class="convergence-tag">Emerging</span>
+                    <div>
+                        <h3>Paid SaaS APIs through agents</h3>
+                        <p>Agents are calling Apollo, Stripe, Pinecone, and a long tail of paid APIs on behalf of teams. Subscriptions, API keys, and corporate cards stretched across surfaces nobody owns. Most of every subscription goes unused.</p>
+                    </div>
+                </div>
+                <div class="convergence-row">
+                    <span class="convergence-tag">Coming fast</span>
+                    <div>
+                        <h3>Agentic commerce endpoints</h3>
+                        <p>x402, MPP, and MCP-paid tools let agents pay any provider, per call, without a checkout. Volume is small today and explosive in 18 months. Every one of those calls needs the same governance as the LLM bill.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRATION -->
+    <section class="code-section fade-in" id="integrate">
         <div class="container">
             <div class="code-header">
-                <div class="section-label">Two Ways to Integrate</div>
-                <h2 class="section-title">Your API. Your way.</h2>
-                <p class="section-desc">Just point us to your endpoint. Or add our SDK for inline control. Either way, you're accepting agent payments in minutes.</p>
+                <div class="section-label">Integrate</div>
+                <h2 class="section-title">One client. Every provider.<br>Every policy enforced.</h2>
+                <p class="section-desc">Drop the Agentagon client into your agent and replace your provider calls with client.call(). Every invocation is checked against your team budgets, agent caps, and provider allowlists before a dollar moves.</p>
             </div>
 
-            <div class="integration-tabs">
-                <button class="integration-tab active" onclick="switchTab('proxy')">Proxy: Zero Code Changes</button>
-                <button class="integration-tab" onclick="switchTab('sdk')">SDK: Inline Control</button>
-            </div>
-
-            <!-- PROXY TAB -->
-            <div class="integration-panel active" id="tab-proxy">
-                <div class="code-block" style="margin-bottom: 0;">
-                    <div class="code-block-header">
-                        <span class="code-block-title">Your Code Changes</span>
-                        <span class="code-block-badge badge-green">0 lines</span>
-                    </div>
-                    <pre>
-<span class="comment"># Your existing API stays exactly as it is.</span>
-<span class="comment"># No SDK. No decorator. No imports. Nothing.</span>
-<span class="comment">#</span>
-<span class="comment"># Just give Agentagon your endpoint URL and pricing.</span>
-<span class="comment"># We create a paid proxy endpoint that agents call instead.</span>
-<span class="comment"># Payments verified, requests forwarded, revenue tracked.</span>
-</pre>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <span class="code-block-title">Drop-in client</span>
+                    <span class="code-block-badge badge-green">Policy enforced</span>
                 </div>
-                <div class="proxy-steps">
-                    <div class="proxy-step">
-                        <div class="proxy-step-num">1</div>
-                        <h4>Register your endpoint</h4>
-                        <p>Give us your API URL and set your price per call. Dashboard or API.</p>
-                    </div>
-                    <div class="proxy-step">
-                        <div class="proxy-step-num">2</div>
-                        <h4>We create a paid endpoint</h4>
-                        <p>Agents call your Agentagon URL. We verify payments and proxy to your origin.</p>
-                    </div>
-                    <div class="proxy-step">
-                        <div class="proxy-step-num">3</div>
-                        <h4>You get paid</h4>
-                        <p>Same dashboard, same ledger, same settlement. Zero code on your side.</p>
-                    </div>
-                </div>
+                <pre><span class="keyword">import</span> agentagon
+
+client = agentagon.Client(pat=<span class="string">"ag_pat_..."</span>)
+
+<span class="comment"># Every call is policy-checked before it spends a dollar.</span>
+result = client.call(
+    provider=<span class="string">"openai"</span>,
+    payload={<span class="string">"model"</span>: <span class="string">"gpt-5"</span>, <span class="string">"input"</span>: <span class="string">"..."</span>},
+)
+
+<span class="comment"># Spend logged. Budget tracked. Audit ready.</span>
+<span class="comment"># Over a cap? Routed to your approval queue automatically.</span></pre>
             </div>
-
-            <!-- SDK TAB -->
-            <div class="integration-panel" id="tab-sdk">
-                <div class="code-comparison-wrapper">
-                    <div class="code-comparison">
-                        <div class="code-block">
-                            <div class="code-block-header">
-                                <span class="code-block-title">Without Agentagon</span>
-                                <span class="code-block-badge badge-red">~2,000 lines</span>
-                            </div>
-                            <pre><span class="comment"># Wallet setup</span>
-<span class="keyword">from</span> coinbase <span class="keyword">import</span> CoinbaseClient
-wallet = CoinbaseClient(api_key=<span class="string">"..."</span>)
-
-<span class="comment"># x402 payment verification</span>
-<span class="keyword">def</span> <span class="function">verify_x402</span>(request):
-    payment = request.headers[<span class="string">"X-Payment"</span>]
-    sig = decode_payment(payment)
-    <span class="keyword">if not</span> verify_onchain(sig, CHAIN_ID):
-        <span class="keyword">raise</span> PaymentError(<span class="string">"Invalid"</span>)
-    <span class="keyword">return</span> sig.amount
-
-<span class="comment"># MPP verification (different protocol!)</span>
-<span class="keyword">def</span> <span class="function">verify_mpp</span>(request):
-    token = request.headers[<span class="string">"X-MPP-Token"</span>]
-    <span class="comment"># ... 40 more lines ...</span>
-
-<span class="comment"># Ledger, invoicing, rate limiting...</span>
-<span class="keyword">def</span> <span class="function">log_transaction</span>(agent, amount, endpoint):
-    db.insert({<span class="string">"agent"</span>: agent, ...})
-    <span class="keyword">if</span> should_invoice(agent):
-        generate_invoice(agent)
-
-<span class="comment"># Settlement logic...</span>
-<span class="comment"># API key management...</span>
-<span class="comment"># Rate limiting per tier...</span>
-<span class="dim"># ... 1,950 more lines ...</span></pre>
-                            <div class="code-line-count">+ wallet setup, settlement, invoicing, rate limiting, API keys...</div>
-                        </div>
-                        <div class="code-block">
-                            <div class="code-block-header">
-                                <span class="code-block-title">With Agentagon SDK</span>
-                                <span class="code-block-badge badge-green">5 lines</span>
-                            </div>
-                            <pre>
-<span class="keyword">import</span> agentagon
-
-agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
-
-<span class="decorator">@agentagon.paid</span>(<span class="string">"$0.01"</span>)
-<span class="keyword">def</span> <span class="function">get_weather</span>(city: <span class="keyword">str</span>):
-    <span class="keyword">return</span> {<span class="string">"temp"</span>: <span class="number">72</span>, <span class="string">"conditions"</span>: <span class="string">"sunny"</span>}
-
-
-<span class="comment"># That's it.</span>
-<span class="comment"># x402, MPP, ACP, AP2 - all supported.</span>
-<span class="comment"># Wallets, ledger, invoices - handled.</span>
-<span class="comment"># Settlement in USDC or fiat - your choice.</span>
-<span class="comment"># Rate limiting, tiers - configured in dashboard.</span>
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -756,64 +874,40 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
     <section class="solution-section fade-in" id="solution">
         <div class="container">
             <div class="solution-header">
-                <div class="section-label">What You Get</div>
-                <h2 class="section-title">A full payment stack.<br>Zero infrastructure.</h2>
+                <div class="section-label">The Platform</div>
+                <h2 class="section-title">A control plane for autonomous spend.</h2>
+                <p class="section-desc">Six surfaces, one workspace. Built for the people accountable for AI agent spend, security, and audit.</p>
             </div>
             <div class="solution-grid">
                 <div class="solution-card">
-                    <div class="solution-label">Multi-Protocol</div>
-                    <h3>Every Payment Rail, One Integration</h3>
-                    <p>x402, MPP, ACP, AP2 out of the box. Your endpoint returns a 402 response that any agent can pay, regardless of which protocol they use. New protocols ship without touching your code.</p>
+                    <div class="solution-label">Mission Control</div>
+                    <h3>The pane that finance, IT, and eng all share.</h3>
+                    <p>Real-time spend, policy adherence, active agents, approvals pending, blocked events. Spend trend by day. Breakdowns by team, employee, agent, and provider. One source of truth for the whole org.</p>
                 </div>
                 <div class="solution-card">
-                    <div class="solution-label">Settlement</div>
-                    <h3>Get Paid Your Way</h3>
-                    <p>Payments go to your Agentagon wallet. Withdraw as USDC, ETH, or fiat. Your choice. Daily or weekly settlement cycles. You never touch a blockchain.</p>
+                    <div class="solution-label">Governance</div>
+                    <h3>Five layers of policy. RBAC by default.</h3>
+                    <p>Team budgets, employee delegation, agent caps, provider allowlists, approval thresholds. Escalation chain runs Agent to Employee owner to Team budget owner to CFO/CTO. Everything is enforced before a dollar moves.</p>
                 </div>
                 <div class="solution-card">
-                    <div class="solution-label">Ledger</div>
-                    <h3>See Every Transaction</h3>
-                    <p>Every call logged by agent, endpoint, and buyer. Auto-generated invoices. Revenue analytics by endpoint, agent, and time period. CSV export or API access.</p>
+                    <div class="solution-label">Provider Marketplace</div>
+                    <h3>Curated catalog with pricing, latency, ROI.</h3>
+                    <p>OpenAI, Anthropic, Stripe, Plaid, Pinecone, Serper, Context7, and more. Each one shows protocols supported, pricing model, p50 latency, approval status, and ROI score. Route spend over the right rail without hand-rolling integrations.</p>
                 </div>
                 <div class="solution-card">
-                    <div class="solution-label">Zero Ops</div>
-                    <h3>No Wallet. No Infra. No Hassle.</h3>
-                    <p>No wallet setup. No blockchain knowledge. No servers to manage. Agentagon handles facilitator verification, escrow, settlement, rate limiting, and dispute resolution.</p>
+                    <div class="solution-label">Multi-rail Payments</div>
+                    <h3>One ledger across every rail.</h3>
+                    <p>x402 and MPP for HTTP-native and machine payments. Stripe and Plaid for cards, settlements, and bank context. Live USDC balances on Base and Solana. Top up, pay, and reconcile in one place.</p>
                 </div>
                 <div class="solution-card">
-                    <div class="solution-label">Spend Governance</div>
-                    <h3>Per-Agent Budgets &amp; Controls</h3>
-                    <p>Set per-agent spending limits, daily caps, and category restrictions. Policies are enforced before the payment goes through. CFOs and compliance teams get the controls they need.</p>
+                    <div class="solution-label">Approvals</div>
+                    <h3>Human-in-the-loop, by severity.</h3>
+                    <p>High, Medium, Low queues by spend impact. Approve in dashboard, Slack, or via API. Agents pause on approval, resume on approve, deny on deny, all with full audit trail. No more screenshots in a Slack thread.</p>
                 </div>
                 <div class="solution-card">
-                    <div class="solution-label">Audit Trail</div>
-                    <h3>Full History. Always Exportable.</h3>
-                    <p>Every transaction logged by agent, endpoint, buyer, and time. Structured logs and webhooks for engineering. CSV export and compliance-ready reports for finance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BUILT FOR AGENTS -->
-    <section class="callout-section fade-in">
-        <div class="container">
-            <div class="callout-header">
-                <div class="section-label">Built Different</div>
-                <h2 class="section-title">Built for agents, not humans.</h2>
-                <p class="section-desc">Traditional payment infrastructure assumes a human behind a browser. The agentic economy doesn't work that way.</p>
-            </div>
-            <div class="callout-items">
-                <div class="callout-item">
-                    <span class="callout-icon">&#x1f6ab;</span>
-                    <p><strong>Human checkout flows require browser sessions.</strong> Agents call APIs. They need machine-readable 402 responses, not redirect URLs.</p>
-                </div>
-                <div class="callout-item">
-                    <span class="callout-icon">&#x1f4b8;</span>
-                    <p><strong>Fixed billing cycles don't fit per-call micropayments.</strong> Agent transactions are $0.001&ndash;$0.10 each, thousands per minute. You need per-call settlement, not monthly invoices.</p>
-                </div>
-                <div class="callout-item">
-                    <span class="callout-icon">&#x1f517;</span>
-                    <p><strong>No existing provider speaks x402, MPP, or ACP natively.</strong> Agentagon does. One integration, every agent payment protocol, today and tomorrow.</p>
+                    <div class="solution-label">Audit &amp; Integrations</div>
+                    <h3>Wired into the systems you already run.</h3>
+                    <p>Audited event ledger with CSV export. ERP export to NetSuite. SSO and SCIM via WorkOS. Slack notifications. MCP for tool interop. Compliance-ready reports for finance and security.</p>
                 </div>
             </div>
         </div>
@@ -823,37 +917,62 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
     <section class="how-section fade-in" id="how">
         <div class="container">
             <div class="how-header">
-                <div class="section-label">How It Works</div>
-                <h2 class="section-title">From zero to paid API<br>in under 5 minutes.</h2>
+                <div class="section-label">How it works</div>
+                <h2 class="section-title">From scattered AI spend to one control plane.</h2>
             </div>
             <div class="how-steps">
                 <div class="how-step">
                     <div class="how-step-num">1</div>
                     <div>
-                        <h3>Install the SDK</h3>
-                        <p><code>pip install agentagon</code> or <code>npm install agentagon</code>. Initialize with your API key.</p>
+                        <h3>Connect your rails</h3>
+                        <p>Stripe, Plaid, x402, MPP. Live in minutes via SDK or proxy. No infra to host, no chains to learn. Your existing providers and accounts plug straight in.</p>
                     </div>
                 </div>
                 <div class="how-step">
                     <div class="how-step-num">2</div>
                     <div>
-                        <h3>Add the decorator</h3>
-                        <p>Wrap any endpoint with <code>@agentagon.paid("$0.01")</code>. Set your price per call. That's your only code change.</p>
+                        <h3>Set policies and budgets</h3>
+                        <p>Create teams. Delegate to employees. Mint agents. Cap spend, allowlist providers, set approval thresholds. The 5-layer policy stack runs on every call.</p>
                     </div>
                 </div>
                 <div class="how-step">
                     <div class="how-step-num">3</div>
                     <div>
-                        <h3>Agents discover and pay</h3>
-                        <p>Your API automatically returns <code>402 Payment Required</code> with supported payment protocols. Any compatible agent can pay and access your endpoint.</p>
+                        <h3>Deploy agents through Agentagon</h3>
+                        <p>Use <code>agentagon.Client(pat=...).call(...)</code> in your code. Every call is policy-checked, budget-enforced, and audit-logged before it lands at the provider.</p>
                     </div>
                 </div>
                 <div class="how-step">
                     <div class="how-step-num">4</div>
                     <div>
-                        <h3>You get paid</h3>
-                        <p>Agentagon verifies payments, logs transactions, and settles to your wallet. View everything in your dashboard: revenue, agents, invoices, analytics.</p>
+                        <h3>Watch Mission Control</h3>
+                        <p>Real-time spend, blocked events, approvals queue, and audit log. Alerts in Slack. Exports to ERP. Finance, IT, and engineering see the same data, scoped to what they own.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUILT FOR -->
+    <section class="callout-section fade-in">
+        <div class="container">
+            <div class="callout-header">
+                <div class="section-label">Built for</div>
+                <h2 class="section-title">CFOs, CISOs, and VPs of Engineering deploying agents in production.</h2>
+                <p class="section-desc">Every other spend tool assumes a human at a checkout. Agentagon assumes an agent at an API.</p>
+            </div>
+            <div class="callout-items">
+                <div class="callout-item">
+                    <span class="callout-icon">&#x1F4CA;</span>
+                    <p><strong>Finance gets a single ledger.</strong> Every rail, every provider, every agent, in one audited stream. Reconcile in minutes, not weeks. Export to NetSuite or your warehouse.</p>
+                </div>
+                <div class="callout-item">
+                    <span class="callout-icon">&#x1F512;</span>
+                    <p><strong>Security gets a real control plane.</strong> RBAC, SSO, SCIM, allowlists, kill switches. Block a runaway agent in one click. Produce an audit trail on demand.</p>
+                </div>
+                <div class="callout-item">
+                    <span class="callout-icon">&#x26A1;</span>
+                    <p><strong>Engineering gets to ship.</strong> One SDK call replaces a checkout flow per provider, a wallet per chain, and a billing integration per rail. The infrastructure is already there.</p>
                 </div>
             </div>
         </div>
@@ -863,26 +982,26 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
     <section class="market-section fade-in" id="market">
         <div class="container">
             <div class="market-header">
-                <div class="section-label">Why Now</div>
-                <h2 class="section-title">The numbers are in.</h2>
+                <div class="section-label">Why now</div>
+                <h2 class="section-title">The agents are landing.<br>The controls aren't.</h2>
             </div>
             <div class="market-grid">
                 <div class="market-card">
                     <div class="stat-highlight">40%</div>
-                    <h3>Agent Adoption is Exploding</h3>
-                    <p>40% of enterprise apps will have task-specific AI agents by end of 2026, up from less than 5% in 2025. Each agent generates thousands of API calls per minute.</p>
+                    <h3>Agents are going to production</h3>
+                    <p>40% of enterprise apps will run task-specific AI agents by end of 2026, up from less than 5% in 2025. Each agent generates thousands of paid calls per minute.</p>
                     <div class="punchline">Gartner, 2025</div>
                 </div>
                 <div class="market-card">
-                    <div class="stat-highlight">150M+</div>
-                    <h3>Payment Rails are Maturing</h3>
-                    <p>150M x402 transactions processed. Stripe and Paradigm launched MPP. ACP gaining traction. The payment rails exist. Sellers need a bridge to use them.</p>
-                    <div class="punchline">Coinbase, Stripe</div>
+                    <div class="stat-highlight">$15T</div>
+                    <h3>Agents are spending real money</h3>
+                    <p>$15T of B2B spend will be intermediated by AI agents by 2028. Today, almost none of it is governed, audited, or capped at the agent layer.</p>
+                    <div class="punchline">Gartner, 2025</div>
                 </div>
                 <div class="market-card">
                     <div class="stat-highlight">1 in 4</div>
-                    <h3>Developers are Ready</h3>
-                    <p>25% of developers now design APIs for AI agents. But only a fraction can accept agent payments. The demand is there, but the infrastructure isn't.</p>
+                    <h3>The infrastructure is racing to catch up</h3>
+                    <p>25% of developers now design APIs for AI agents. Payment rails are maturing fast (x402, MPP, ACP). The control plane is the missing layer.</p>
                     <div class="punchline">Postman State of API 2025</div>
                 </div>
             </div>
@@ -898,16 +1017,32 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
             </div>
             <div class="faq-list">
                 <details>
-                    <summary>Do I need to know anything about crypto or blockchain?</summary>
-                    <div class="faq-answer">No. You never touch a wallet, sign a transaction, or think about chains. Agentagon handles all blockchain interactions on your behalf. You just add a decorator and get paid.</div>
+                    <summary>Where do my agents run?</summary>
+                    <div class="faq-answer">Wherever you want. Agentagon is the control plane, not the runtime. Run agents on your own infra, in any framework or language. Calls go through the Agentagon client; the rest of your stack stays put.</div>
                 </details>
                 <details>
-                    <summary>What payment protocols do you support?</summary>
-                    <div class="faq-answer">x402, MPP, ACP, and AP2. New protocols are added without any code changes on your side. Your endpoint automatically advertises all supported protocols.</div>
+                    <summary>Which payment rails do you support?</summary>
+                    <div class="faq-answer">x402 and MPP for machine-native payments. Stripe and Plaid for cards, settlements, and bank context. ACP and AP2 are on the roadmap. New rails ship without changing your code, just like new providers in the marketplace.</div>
                 </details>
                 <details>
-                    <summary>Where is my money held?</summary>
-                    <div class="faq-answer">You choose. Payments can go directly to your own wallet, or to Agentagon's escrow wallet for managed settlement. Configure your preferred currency (USDC, ETH, or fiat) and cycle (daily, weekly, or instant).</div>
+                    <summary>How does policy enforcement actually work?</summary>
+                    <div class="faq-answer">Every call passes through a 5-layer check before reaching the provider: team budget, employee delegation, agent cap, provider allowlist, and approval threshold. Allowed calls go through. Over-cap calls go to the approvals queue. Disallowed calls get blocked and logged.</div>
+                </details>
+                <details>
+                    <summary>Who approves over-budget calls?</summary>
+                    <div class="faq-answer">You configure it per policy. The default escalation chain is Employee owner, then Team budget owner, then CFO or CTO. Approvers act in the dashboard, in Slack, or via API. Agents pause until a decision lands.</div>
+                </details>
+                <details>
+                    <summary>Where is the money held?</summary>
+                    <div class="faq-answer">Your choice. Use Agentagon-managed sub-wallets per agent for zero setup, or bring your own treasury and we sign with your keys. USDC on Base and Solana today, fiat rails via Stripe.</div>
+                </details>
+                <details>
+                    <summary>SOC2, SSO, audit?</summary>
+                    <div class="faq-answer">SOC2 in progress with our design partners. SSO and SCIM via WorkOS, available in beta. Every call writes to an audited event ledger with CSV export and ERP push to NetSuite.</div>
+                </details>
+                <details>
+                    <summary>Do I need this if my agents only call OpenAI today?</summary>
+                    <div class="faq-answer">Yes, for two reasons. First, today's LLM bill needs the same per-team and per-agent budget enforcement we'd apply to any other rail. Second, the SaaS APIs and x402 endpoints are coming fast. The control plane that governs both is cheaper to install once than retrofit later.</div>
                 </details>
             </div>
         </div>
@@ -916,13 +1051,13 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
     <!-- CTA -->
     <section class="cta-section">
         <div class="container">
-            <h2 class="section-title">Start monetizing agent traffic</h2>
-            <p>We're onboarding API sellers who want to accept payments from AI agents. Get early access and go from zero to paid API in under 5 minutes.</p>
+            <h2 class="section-title">Take control of agent spend before it controls you.</h2>
+            <p>We're onboarding design partners deploying AI agents in production. If finance, security, or engineering owns this surface at your company, we want to talk.</p>
             <button class="btn-primary" onclick="openModal()" style="font-size:16px; padding: 15px 32px;">
                 Request Early Access
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <p class="cta-pricing"><span class="dot"></span> Free during beta. No credit card required.</p>
+            <p class="cta-meta">Built by founders from Uber and Google.</p>
         </div>
     </section>
 
@@ -936,8 +1071,8 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 </div>
                 <div class="footer-links">
                     <a href="#" onclick="event.preventDefault();openModal()">Contact</a>
-                    <a href="#solution">What We Build</a>
-                    <a href="#solution">Solution</a>
+                    <a href="#solution">Platform</a>
+                    <a href="#how">How it works</a>
                 </div>
             </div>
         </div>
@@ -949,49 +1084,55 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <div id="modalForm">
                 <h3>Request Early Access</h3>
-                <p class="modal-sub">We're onboarding API sellers who want to monetize agent traffic. Tell us about your API and we'll get you set up.</p>
+                <p class="modal-sub">Built for CFOs, Heads of IT and Security, and VPs of Engineering deploying AI agents in production. Tell us a little about your setup and we'll get you in.</p>
                 <form onsubmit="handleSubmit(event)">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Your full name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Work email</label>
                         <input type="email" id="email" name="email" placeholder="you@company.com" required>
                     </div>
                     <div class="form-group">
-                        <label for="role">What are you building?</label>
+                        <label for="role">Your role</label>
                         <select id="role" name="role" required>
-                            <option value="" disabled selected>Select your use case</option>
-                            <option value="api-seller">API provider wanting to sell to agents</option>
-                            <option value="agent-builder">AI agent that needs to pay for APIs</option>
-                            <option value="platform">Platform integrating agent payments</option>
-                            <option value="research">Research / exploring agentic commerce</option>
+                            <option value="" disabled selected>Select your role</option>
+                            <option value="cfo-finance">CFO / Finance leader</option>
+                            <option value="ciso-it">CISO / Head of IT or Security</option>
+                            <option value="vp-eng">VP Eng / Eng leader</option>
+                            <option value="founder-ceo">Founder / CEO</option>
+                            <option value="ops-governance">Ops / Governance owner</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="volume">Monthly API calls (approx)</label>
-                        <select id="volume" name="volume">
-                            <option value="" disabled selected>Select volume</option>
-                            <option value="<1K">Under 1,000</option>
-                            <option value="1K-10K">1,000 - 10,000</option>
-                            <option value="10K-100K">10,000 - 100,000</option>
-                            <option value="100K+">100,000+</option>
+                        <label for="agents">Agents in production</label>
+                        <select id="agents" name="agents" required>
+                            <option value="" disabled selected>Select range</option>
+                            <option value="planning">0 (still planning)</option>
+                            <option value="under-10">Under 10</option>
+                            <option value="10-100">10 to 100</option>
+                            <option value="100-plus">100 or more</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="agentpay">Do you currently accept agent payments?</label>
-                        <select id="agentpay" name="agentpay">
-                            <option value="" disabled selected>Select</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                            <option value="exploring">Exploring</option>
+                        <label for="spend">Approximate monthly AI spend</label>
+                        <select id="spend" name="spend" required>
+                            <option value="" disabled selected>Select range</option>
+                            <option value="under-1k">Under $1,000</option>
+                            <option value="1k-10k">$1,000 to $10,000</option>
+                            <option value="10k-100k">$10,000 to $100,000</option>
+                            <option value="100k-plus">$100,000 or more</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rails">Current providers and rails</label>
+                        <input type="text" id="rails" name="rails" placeholder="OpenAI, Anthropic, Stripe, x402, ...">
                     </div>
                     <div class="form-group">
                         <label for="usecase">Tell us more</label>
-                        <textarea id="usecase" name="usecase" placeholder="Describe your API, what agents you want to monetize, or what you'd like to build with Agentagon..." rows="3"></textarea>
+                        <textarea id="usecase" name="usecase" placeholder="What's the agent doing? Who's accountable for spend today? What are you most worried about?" rows="3"></textarea>
                     </div>
                     <button type="submit" class="form-submit" id="submitBtn">Submit Request</button>
                 </form>
@@ -1031,14 +1172,6 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
             });
         });
 
-        // Integration tab switching
-        function switchTab(tab) {
-            document.querySelectorAll('.integration-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.integration-panel').forEach(p => p.classList.remove('active'));
-            document.querySelector(`.integration-tab[onclick*="${tab}"]`).classList.add('active');
-            document.getElementById('tab-' + tab).classList.add('active');
-        }
-
         // Modal
         function openModal() {
             document.getElementById('modalOverlay').classList.add('open');
@@ -1060,10 +1193,11 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
             const data = {
                 Name: document.getElementById('name').value,
                 Email: document.getElementById('email').value,
-                'What are you building': document.getElementById('role').value,
-                'Monthly API calls': document.getElementById('volume').value,
-                'Accept agent payments': document.getElementById('agentpay').value,
-                'Use case': document.getElementById('usecase').value
+                Role: document.getElementById('role').value,
+                'Agents in production': document.getElementById('agents').value,
+                'Monthly AI spend': document.getElementById('spend').value,
+                'Current rails and providers': document.getElementById('rails').value,
+                'Tell us more': document.getElementById('usecase').value
             };
 
             fetch('https://formcarry.com/s/Xz9dYSKKcM1', {
@@ -1072,7 +1206,7 @@ agentagon.init(api_key=<span class="string">"ag_live_..."</span>)
                 body: JSON.stringify(data)
             })
             .then(res => res.json())
-            .then(data => {
+            .then(() => {
                 document.getElementById('modalForm').style.display = 'none';
                 document.getElementById('formSuccess').style.display = 'block';
                 setTimeout(() => {
